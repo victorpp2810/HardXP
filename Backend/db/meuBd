@@ -1,0 +1,137 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `mydb` ;
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema aulaiud
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `aulaiud` ;
+
+-- -----------------------------------------------------
+-- Schema aulaiud
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `aulaiud` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Usuário`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Usuário` (
+  `idUsuário` INT NOT NULL,
+  `nome` VARCHAR(60) NULL,
+  `email` VARCHAR(50) NULL,
+  `senha` VARCHAR(20) NULL,
+  `cpf` CHAR(11) NULL,
+  `pontuacao` DOUBLE NULL,
+  PRIMARY KEY (`idUsuário`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Curso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Curso` (
+  `idCurso` INT NOT NULL,
+  `titulo` VARCHAR(45) NULL,
+  PRIMARY KEY (`idCurso`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Quiz`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Quiz` (
+  `idQuiz` INT NOT NULL,
+  `pergunta` MEDIUMTEXT NULL,
+  `resposta` MEDIUMTEXT NULL,
+  PRIMARY KEY (`idQuiz`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Conteudo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Conteudo` (
+  `idConteudo` INT NOT NULL,
+  `titulo` TINYTEXT NULL,
+  `texto` LONGTEXT NULL,
+  `Curso_idCurso` INT NOT NULL,
+  PRIMARY KEY (`idConteudo`, `Curso_idCurso`),
+  INDEX `fk_Conteudo_Curso1_idx` (`Curso_idCurso` ASC) VISIBLE,
+  CONSTRAINT `fk_Conteudo_Curso1`
+    FOREIGN KEY (`Curso_idCurso`)
+    REFERENCES `mydb`.`Curso` (`idCurso`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Usuário_has_Curso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Usuário_has_Curso` (
+  `Usuário_idUsuário` INT NOT NULL,
+  `Curso_idCurso` INT NOT NULL,
+  PRIMARY KEY (`Usuário_idUsuário`, `Curso_idCurso`),
+  INDEX `fk_Usuário_has_Curso_Curso1_idx` (`Curso_idCurso` ASC) VISIBLE,
+  INDEX `fk_Usuário_has_Curso_Usuário_idx` (`Usuário_idUsuário` ASC) VISIBLE,
+  CONSTRAINT `fk_Usuário_has_Curso_Usuário`
+    FOREIGN KEY (`Usuário_idUsuário`)
+    REFERENCES `mydb`.`Usuário` (`idUsuário`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Usuário_has_Curso_Curso1`
+    FOREIGN KEY (`Curso_idCurso`)
+    REFERENCES `mydb`.`Curso` (`idCurso`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `aulaiud` ;
+
+-- -----------------------------------------------------
+-- Table `aulaiud`.`funcionarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `funcionarios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(80) NOT NULL,
+  `data_admissao` DATE NOT NULL,
+  `email` VARCHAR(60) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `aulaiud`.`tarefas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tarefas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(255) NOT NULL,
+  `data_inicio` DATE NULL DEFAULT NULL,
+  `data_fim` DATE NULL DEFAULT NULL,
+  `prioridade` TINYINT NOT NULL DEFAULT '3',
+  `descricao` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

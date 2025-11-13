@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conectores do Painel Frontal | HardXP</title>
+  <link rel="stylesheet" href="../css/telainicial.css">
+  <link rel="stylesheet" href="../css/unidadesCSS/unidade10.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.location.href='../curso.html'">← Voltar</button>
+
+  <header class="unit-header">
+    <h1>Conectores do Painel Frontal</h1>
+    <p>Como ligar botões, LEDs, áudio e USBs frontais corretamente na placa-mãe.</p>
+  </header>
+
+  <section class="unit-section intro">
+    <h2>Introdução</h2>
+    <p>
+      Os conectores do <strong>painel frontal</strong> são responsáveis por acionar o computador e permitir o uso das portas frontais do gabinete.  
+      Sem eles, o PC não liga, os LEDs não funcionam e o áudio/USB frontal ficam inativos.
+    </p>
+    <p>
+      Entre os principais conectores, temos:
+    </p>
+    <ul>
+      <li>Botão liga/desliga (<strong>Power SW</strong>)</li>
+      <li>Botão de reset (<strong>Reset SW</strong>)</li>
+      <li>LED de energia (<strong>Power LED</strong>)</li>
+      <li>LED de atividade do disco (<strong>HDD LED</strong>)</li>
+      <li>Áudio frontal (<strong>HD Audio</strong>)</li>
+      <li>USB frontal (quando disponível)</li>
+    </ul>
+
+    <div class="media-box">
+      <h4>Vídeo demonstrativo: Conectando o painel frontal</h4>
+      <video controls poster="../images/frontpanel-thumb.jpg">
+        <source src="../videos/conectando-painel-frontal.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>1. Conector de Áudio do Painel Frontal (HD Audio)</h2>
+    <p>
+      Normalmente localizado no canto inferior esquerdo da placa-mãe, o conector de <strong>áudio frontal</strong> serve para fones e microfones conectados na frente do gabinete.
+    </p>
+
+    <ul>
+      <li>Possui <strong>9 pinos</strong> (com 1 espaço vazio)</li>
+      <li>O espaço vazio é o entalhe guia (chaveado)</li>
+      <li>O cabo do gabinete vem identificado como <strong>HD AUDIO</strong></li>
+    </ul>
+
+    <p><strong>Como instalar:</strong></p>
+    <ol>
+      <li>Localize o conector HD Audio na placa-mãe.</li>
+      <li>Observe o entalhe vazio (chave de orientação).</li>
+      <li>Alinhe o cabo e pressione até encaixar totalmente.</li>
+    </ol>
+
+    <div class="media-box small">
+      <img src="../images/conector-hdaudio.jpg" alt="Conector HD Audio sendo encaixado na placa-mãe">
+    </div>
+
+    <p class="highlight">
+      Esse conector só encaixa em uma posição — nunca force!  
+      Se estiver invertido, os pinos não alinharão com o espaço vazio.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>2. Conectores do Painel Frontal (Power, Reset e LEDs)</h2>
+    <p>
+      No canto inferior direito da placa-mãe está o <strong>Front Panel Header</strong>, também conhecido como:
+      <strong>F_PANEL</strong>, <strong>PANEL</strong> ou <strong>JFP1</strong>.
+    </p>
+
+    <p>Ele controla:</p>
+    <ul>
+      <li>LED de energia (Power LED)</li>
+      <li>LED do HDD (HDD LED)</li>
+      <li>Botão liga/desliga (Power SW)</li>
+      <li>Botão de reset (Reset SW)</li>
+      <li>Alto-falante do sistema (Speaker)</li>
+    </ul>
+
+    <div class="media-box small">
+      <img src="../images/front-panel-header.jpg" alt="Bloco F_PANEL da placa-mãe com identificação dos pinos">
+    </div>
+
+    <p class="highlight">
+      Atenção: LEDs têm <strong>polaridade</strong> (positivo e negativo).  
+      Os botões Power e Reset não têm — podem ser ligados em qualquer orientação.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>3. Consultando o Manual da Placa-Mãe</h2>
+    <p>
+      O <strong>manual da placa-mãe</strong> é seu guia definitivo para identificar cada pino corretamente.
+      Ele mostra:
+    </p>
+    <ul>
+      <li>Posição dos pinos</li>
+      <li>Polaridade dos LEDs</li>
+      <li>Identificação exata de cada conector</li>
+    </ul>
+
+    <div class="media-box small">
+      <img src="../images/manual-placamae.jpg" alt="Manual da placa-mãe mostrando a posição dos conectores do painel frontal">
+    </div>
+
+    <p class="highlight">
+      Instalar LEDs invertidos não causa danos — apenas faz com que não acendam.  
+      Mas botões mal encaixados impedem o computador de ligar.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>4. Instalando Cada Conector</h2>
+    <article class="card">
+      <h3>LED de Energia (Power LED)</h3>
+      <p>
+        É composto por dois fios — <strong>PLED+</strong> e <strong>PLED–</strong>.  
+        O positivo costuma ir à esquerda, mas sempre confira no manual.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Botão Liga/Desliga (Power SW)</h3>
+      <p>
+        Encaixa no bloco indicado como <strong>PWRBTN</strong>, <strong>PWRSW</strong> ou <strong>POWER SW</strong>.  
+        Não possui polaridade.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Botão Reset (Reset SW)</h3>
+      <p>
+        Conecta onde está escrito <strong>RESET</strong> ou <strong>RST SW</strong>.  
+        Também sem polaridade.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>LED do Disco Rígido (HDD LED)</h3>
+      <p>
+        Indica quando há leitura ou gravação no disco.  
+        Possui polaridade — <strong>HDLED+</strong> e <strong>HDLED–</strong>.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Alto-Falante da BIOS (Speaker)</h3>
+      <p>
+        Produz os <em>beeps</em> de diagnóstico durante o boot.  
+        É opcional, mas útil para identificar falhas no sistema.
+      </p>
+    </article>
+
+    <div class="media-box small">
+      <img src="../images/conectores-fpanel.jpg" alt="Exemplo de cabos Power SW, Reset SW, PLED e HDD LED conectados">
+    </div>
+  </section>
+
+  <section class="unit-section conclusion">
+    <h2>Conclusão</h2>
+    <p>
+      Após conectar todos os cabos do painel frontal:
+    </p>
+    <ul>
+      <li>O botão <strong>liga/desliga</strong> funcionará corretamente</li>
+      <li>Os <strong>LEDs</strong> acenderão quando o PC for ligado</li>
+      <li>O botão <strong>reset</strong> reiniciará o sistema</li>
+      <li>O <strong>áudio frontal</strong> e as <strong>portas USB</strong> estarão habilitadas</li>
+    </ul>
+
+    <p>
+      Essa é uma das partes mais delicadas e importantes da montagem, pois liga o “mundo físico” do gabinete à “lógica” da placa-mãe.
+    </p>
+
+    <p class="highlight">
+      Um único cabo fora do lugar pode impedir o PC de ligar — por isso, siga sempre o manual e monte com paciência e precisão.
+    </p>
+  </section>
+<div class="quiz-navigation">
+    <button class="quiz-btn" onclick="window.location.href='../quizzes/quiz10.html'">
+      Ir para o Quiz da Unidade
+    </button>
+  </div>
+  <footer class="unit-footer">
+    <p>© 2025 HardXP — Aprendizado Gamificado de Hardware</p>
+  </footer>
+<script>
+            marcarConcluida(9);
+    </script>
+</body>
+</html>

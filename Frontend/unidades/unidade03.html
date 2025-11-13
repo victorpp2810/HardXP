@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instalando a Fonte de Alimentação (PSU) | HardXP</title>
+  <link rel="stylesheet" href="../css/telainicial.css">
+  <link rel="stylesheet" href="../css/unidadesCSS/unidade03.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.location.href='../curso.html'">← Voltar</button>
+
+  <header class="unit-header">
+    <h1>Instalando a Fonte de Alimentação (PSU)</h1>
+    <p>Aprenda passo a passo a preparar, posicionar e fixar corretamente a fonte de energia do computador — o coração elétrico de qualquer sistema.</p>
+  </header>
+
+  <section class="unit-section intro">
+    <h2>Introdução: Começando um PC do Zero</h2>
+    <p>
+      A fonte de alimentação, ou PSU (<em>Power Supply Unit</em>), é o componente responsável por converter a energia elétrica da tomada em tensões adequadas para os circuitos do computador.
+      Sem ela, nada funciona. Neste módulo, você aprenderá não apenas a instalar uma PSU, mas também a compreender sua importância na estabilidade, segurança e desempenho de um sistema.
+    </p>
+    <p>
+      Antes de iniciar qualquer montagem, a preparação é fundamental. Um técnico profissional não começa sem um ambiente organizado, ferramentas adequadas e medidas de segurança contra descargas eletrostáticas (ESD).
+    </p>
+    <div class="media-box">
+      <h4>Vídeo: Instalação da fonte de alimentação</h4>
+      <video controls poster="../images/placeholder-video.jpg">
+        <source src="../videos/instalacao-psu.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>1. Segurança Primeiro: ESD e Cuidados Elétricos</h2>
+    <p>
+      Um dos maiores riscos durante a montagem de computadores é a eletricidade estática. Uma simples descarga de poucos volts pode destruir circuitos sensíveis de componentes como a placa-mãe, memória RAM ou GPU.
+    </p>
+    <p>
+      Por isso, antes de tocar em qualquer peça, o técnico deve adotar medidas de proteção ESD (<em>Electrostatic Discharge</em>):
+    </p>
+
+    <article class="card">
+      <h3>Tapete antiestático</h3>
+      <p>
+        O tapete antiestático é utilizado como superfície de trabalho. Ele dissipa lentamente cargas elétricas acumuladas, evitando que se concentrem em componentes metálicos. 
+        Deve ser conectado a um ponto de aterramento — geralmente o próprio gabinete ou o pino de terra de uma tomada.
+      </p>
+      <div class="media-box small">
+        <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lwimge6qs13m5a" alt="Tapete antiestático para bancada de montagem de PC">
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Pulseira antiestática</h3>
+      <p>
+        A pulseira é usada diretamente no pulso do técnico e possui uma garra jacaré conectada ao aterramento. Assim, o corpo do técnico e o sistema permanecem no mesmo potencial elétrico,
+        eliminando o risco de descargas ao encostar nos circuitos. 
+      </p>
+      <div class="media-box small">
+        <img src="https://www.institutodigital.com.br/wp-content/uploads/2020/08/pulseira-antiestatica-garra-jacare-2.jpg" alt="Pulseira antiestática usada durante montagem de PC">
+      </div>
+    </article>
+
+    <p>
+      Além da ESD, é importante atentar-se à segurança elétrica:
+    </p>
+    <ul>
+      <li>Evite conectar a fonte à tomada durante a montagem.</li>
+      <li>Certifique-se de que a chave seletora (115V/230V) está na posição correta para a sua região.</li>
+      <li>Não toque na placa eletrônica interna da fonte.</li>
+      <li>Utilize sempre tomadas com aterramento.</li>
+    </ul>
+
+    <div class="media-box">
+      <img src="https://media.istockphoto.com/id/1465466770/pt/vetorial/high-voltage-warning-sign-triangle-danger-alert-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=AlQdsii42Uz_vX8hu6lVCuKcxoLq4_4NVmVQbPzMsl8=" alt="Símbolo de alta tensão em fonte de computador">
+    </div>
+
+    <p class="highlight">
+      A eletricidade estática e a alta tensão são inimigos silenciosos da montagem. O cuidado com ambos diferencia um técnico amador de um profissional.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>2. Posicionando o Gabinete</h2>
+    <p>
+      Antes de instalar a fonte, o gabinete precisa ser corretamente posicionado. Coloque-o de lado, com a parte traseira voltada para você. É nessa região que fica o espaço retangular onde a PSU será fixada.
+    </p>
+    <p>
+      Alguns gabinetes possuem o compartimento da fonte na parte inferior (design moderno), enquanto outros ainda utilizam a parte superior (modelos mais antigos). Em ambos os casos, o fluxo de ar deve ser respeitado.
+    </p>
+
+    <div class="media-box">
+      <img src="https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/informatica_basica/image/partepostp_xl.png" alt="Parte traseira de um gabinete mostrando o local da PSU">
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>3. Abertura e Preparação do Gabinete</h2>
+    <p>
+      Para acessar o interior, retire a tampa lateral direita do gabinete. Utilize uma chave Phillips ou Torx para soltar os parafusos. Coloque a tampa em local seguro.
+    </p>
+    <p>
+      Observe o interior do gabinete: há espaços pré-definidos para placa-mãe, SSDs, ventoinhas, cabos frontais (USB, áudio, botão de energia) e o local destinado à fonte de alimentação.
+    </p>
+
+    <div class="media-box">
+      <img src="https://elements-resized.envatousercontent.com/elements-video-cover-images/e745c617-5619-4b17-8087-32a4433efc53/video_preview/video_preview_0000.jpg?w=500&cf_fit=cover&q=85&format=auto&s=1f825a2fdb2ad0bd797f3ca009b7df345fa7cf7ee7163299cde8eb475a72cfc0" alt="Técnico removendo a tampa lateral de um gabinete">
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>4. Conhecendo a Fonte de Alimentação (PSU)</h2>
+    <p>
+      A fonte de alimentação é responsável por transformar a corrente alternada (AC) da rede elétrica em corrente contínua (DC) usada pelos componentes. 
+      Ela fornece diferentes tensões — geralmente 12V, 5V e 3,3V — por meio de conectores específicos.
+    </p>
+
+    <article class="card">
+      <h3>Principais conectores da PSU</h3>
+      <ul>
+        <li><strong>24 pinos (ATX):</strong> alimenta a placa-mãe.</li>
+        <li><strong>8 pinos (CPU):</strong> fornece energia ao processador.</li>
+        <li><strong>PCIe 6/8 pinos:</strong> usado em placas de vídeo (GPU).</li>
+        <li><strong>SATA:</strong> para SSDs e HDDs.</li>
+        <li><strong>Molex:</strong> ainda presente para ventoinhas ou acessórios antigos.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Planejamento da potência</h3>
+      <p>
+        Antes da instalação, é essencial calcular a demanda energética do sistema:
+      </p>
+      <ul>
+        <li>Somar o consumo da CPU, GPU e periféricos.</li>
+        <li>Escolher uma fonte com margem de sobra (idealmente 20% a mais que o consumo total).</li>
+        <li>Priorizar fontes com certificação <strong>80 Plus</strong> (White, Bronze, Gold, Platinum ou Titanium).</li>
+      </ul>
+
+      <div class="media-box small">
+        <img src="https://images.tcdn.com.br/img/img_prod/15959/fonte_atx_450w_real_corsair_cv450_80_plus_bronze_17746_1_83bd6565e077bf89d3fd82bd9651bdb7.jpg" alt="Fonte de alimentação de 450W para desktop">
+      </div>
+    </article>
+  </section>
+
+  <section class="unit-section">
+    <h2>5. Instalação da PSU no Gabinete</h2>
+    <p>A instalação deve ser feita com calma e precisão.</p>
+
+    <article class="card">
+      <h3>Etapa 1: Posicionamento</h3>
+      <p>
+        A fonte é inserida pelo interior do gabinete, alinhando-a à abertura traseira. 
+        Verifique se o ventilador da PSU está voltado para baixo (em gabinetes com grelha inferior) ou para cima (em gabinetes sem grelha).
+      </p>
+      <div class="media-box small">
+        <img src="../images/psu-posicionada.jpg" alt="
+        +++++++">
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Etapa 2: Alinhamento dos parafusos</h3>
+      <p>
+        Posicione a fonte de forma que os quatro furos de fixação coincidam com os da estrutura metálica do gabinete. 
+        Isso evita vibrações e garante ventilação adequada. Alguns gabinetes possuem travas adicionais para facilitar o encaixe.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Etapa 3: Fixação</h3>
+      <p>
+        Utilize os quatro parafusos próprios para fontes de alimentação. Aperte de forma firme, mas sem forçar excessivamente, evitando danificar a rosca.
+        Certifique-se de que a PSU esteja completamente estável.
+      </p>
+      <div class="media-box small">
+        <img src="../images/parafusando-psu.jpg" alt="Técnico parafusando a fonte de alimentação no gabinete">
+      </div>
+    </article>
+
+    <p class="highlight">
+      Após instalada, a fonte está pronta para receber o cabo de energia externo e alimentar os componentes internos.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>6. Considerações Finais</h2>
+    <p>
+      Escolher uma boa fonte de alimentação é investir na longevidade do computador. Uma PSU de baixa qualidade pode comprometer todo o sistema, gerando instabilidade, travamentos ou até danos permanentes.
+    </p>
+    <p>
+      Sempre opte por marcas confiáveis e com certificação. E lembre-se: fontes subdimensionadas ou genéricas são a principal causa de falhas graves em PCs de alto desempenho.
+    </p>
+    <p>
+      Em montagens futuras, especialmente com placas de vídeo potentes, verifique se a potência total continua adequada. 
+      O equilíbrio entre eficiência, potência e qualidade elétrica é o que garante a vida longa e estável do seu computador.
+    </p>
+  </section>
+<div class="quiz-navigation">
+    <button class="quiz-btn" onclick="window.location.href='../quizzes/quiz03.html'">
+      Ir para o Quiz da Unidade
+    </button>
+  </div>
+  <footer class="unit-footer">
+    <p>© 2025 HardXP — Aprendizado Gamificado de Hardware</p>
+  </footer>
+  <script>
+            marcarConcluida(2);
+    </script>
+</body>
+</html>

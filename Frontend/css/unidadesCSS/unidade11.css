@@ -1,0 +1,141 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.unit-header {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.unit-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.unit-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.unit-section {
+  background: white;
+  padding: 3rem 8%;
+  border-top: 4px solid #3b82f6;
+}
+
+.unit-section:nth-child(even) {
+  background: #f9fafb;
+}
+
+.unit-section h2 {
+  color: #1e40af;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: #f1f5f9;
+  border-left: 5px solid #3b82f6;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0.6rem;
+}
+
+.media-box {
+  background: #eff6ff;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.media-box img, 
+.media-box video {
+  max-width: 90%;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.media-box.small {
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.highlight {
+  background: #dbeafe;
+  padding: 1rem;
+  border-left: 5px solid #3b82f6;
+  border-radius: 0.4rem;
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+.unit-footer {
+  background: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .unit-header h1 {
+    font-size: 2rem;
+  }
+  .unit-section {
+    padding: 2rem 1.5rem;
+  }
+  .media-box img,
+  .media-box video {
+    max-width: 100%;
+  }
+}
+.quiz-navigation {
+  text-align: center;
+  margin: 3rem 0 2rem 0;
+}
+
+.quiz-btn {
+  background: #2563eb;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.quiz-btn:hover {
+  background: #1e3a8a;
+  box-shadow: 0 6px 14px rgba(30, 58, 138, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Estilo do botão de voltar */
+.btn-voltar {
+    position: fixed;           /* Fica fixo na tela */
+    top: 15px;                 /* Distância do topo */
+    left: 15px;                /* Distância da esquerda */
+    background-color: #007BFF; /* Azul padrão */
+    color: white;              /* Cor do texto */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+}

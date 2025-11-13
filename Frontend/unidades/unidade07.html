@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instalando Placas de Expansão PCIe | HardXP</title>
+  <link rel="stylesheet" href="../css/telainicial.css">
+  <link rel="stylesheet" href="../css/unidadesCSS/unidade07.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.location.href='../curso.html'">← Voltar</button>
+
+  <header class="unit-header">
+    <h1>Instalando Placas de Expansão PCI Express</h1>
+    <p>Aprenda como adicionar novos recursos ao computador através dos slots PCIe da placa-mãe.</p>
+  </header>
+
+  <section class="unit-section intro">
+    <h2>Introdução: Expansão do Computador</h2>
+    <p>
+      Os <strong>slots de expansão PCI Express (PCIe)</strong> permitem que o computador ganhe novas funcionalidades e aumente sua capacidade.  
+      Através deles, podemos instalar placas que adicionam vídeo, som, rede, conectividade sem fio e muito mais.
+    </p>
+    <p>
+      Nesta unidade, veremos como identificar os tipos de slots PCIe e instalar corretamente uma <strong>placa adaptadora</strong> (neste caso, uma GPU).
+      O processo é simples, mas requer atenção para evitar mau contato e encaixes forçados.
+    </p>
+
+    <div class="media-box">
+      <h4>Vídeo demonstrativo: Instalação de placa PCI Express</h4>
+      <video controls poster="../images/pci-install-thumb.jpg">
+        <source src="../videos/instalando-placa-pcie.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>1. Identificando os Slots PCI Express</h2>
+    <p>
+      As placas-mãe modernas possuem diferentes tamanhos de <strong>slots PCIe</strong>, indicados pelo número de "linhas" de comunicação que oferecem.  
+      Cada tamanho atende a um tipo específico de dispositivo.
+    </p>
+
+    <article class="card">
+      <h3>PCIe x16 — Slot principal</h3>
+      <p>
+        É o maior slot da placa-mãe e o mais próximo do processador.  
+        Ele é usado principalmente para <strong>placas de vídeo (GPUs)</strong>, pois oferece a largura de banda necessária para transmissões intensas de dados gráficos.
+      </p>
+      <div class="media-box small">
+        <img src="../images/pcie-x16.jpg" alt="Slot PCIe x16 usado para placas de vídeo">
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>PCIe x1 — Slots secundários</h3>
+      <p>
+        São menores e usados para placas complementares, como:
+      </p>
+      <ul>
+        <li>Placas de som dedicadas</li>
+        <li>Placas de rede adicionais</li>
+        <li>Adaptadores USB extras</li>
+        <li>Capturadoras de vídeo</li>
+      </ul>
+      <div class="media-box small">
+        <img src="../images/pcie-x1.jpg" alt="Slots PCIe x1 na placa-mãe">
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Mini PCIe</h3>
+      <p>
+        Utilizado principalmente em <strong>laptops e mini PCs</strong>.  
+        Ideal para placas Wi-Fi e Bluetooth, é uma versão reduzida do PCIe tradicional.
+      </p>
+      <div class="media-box small">
+        <img src="../images/mini-pcie.jpg" alt="Mini PCIe usado para Wi-Fi e Bluetooth">
+      </div>
+    </article>
+
+    <p class="highlight">
+      Saber identificar cada tipo de slot é essencial para escolher o componente certo e garantir compatibilidade física e elétrica.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>2. Preparando o Gabinete</h2>
+    <p>
+      Antes de inserir qualquer placa, é necessário liberar o espaço correspondente na parte traseira do gabinete.  
+      Essa etapa garante que as saídas externas da placa (como HDMI, USB ou antenas) fiquem acessíveis fora do computador.
+    </p>
+
+    <ol>
+      <li>Localize o slot vazio na placa-mãe onde a placa será instalada.</li>
+      <li>Encontre a tampa metálica na parte traseira alinhada a esse slot.</li>
+      <li>Remova o parafuso que prende a tampa.</li>
+      <li>Retire a tampa com cuidado, abrindo o espaço de encaixe.</li>
+    </ol>
+
+    <div class="media-box">
+      <img src="../images/removendo-tampa.jpg" alt="Removendo a tampa traseira do slot PCIe no gabinete">
+    </div>
+
+    <p class="highlight">
+      Dica: guarde as tampas removidas — elas podem ser reutilizadas em futuras configurações.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>3. Removendo a Tampa do Slot</h2>
+    <p>
+      Com o gabinete aberto e deitado lateralmente, tenha cuidado para não arranhar a placa-mãe.  
+      Use uma chave Phillips ou Torx para retirar o parafuso que prende a tampa do slot.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/tampa-slot.jpg" alt="Tampa metálica sendo removida do slot PCIe">
+    </div>
+
+    <p>
+      Assim que a tampa for retirada, o slot estará pronto para receber a placa adaptadora.  
+      Sem essa remoção, a placa não se encaixaria corretamente, pois suas saídas traseiras não teriam espaço para passar.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>4. Inserindo a Placa PCIe</h2>
+    <p>
+      Agora vem a parte principal: instalar a placa no slot PCIe.  
+      É importante alinhar o conector corretamente e aplicar pressão apenas na região do conector dourado.
+    </p>
+
+    <div class="media-box">
+      <img src="../images/inserindo-placa.jpg" alt="Alinhando e inserindo placa PCIe na placa-mãe">
+    </div>
+
+    <ol>
+      <li>Segure a placa pelas bordas, evitando tocar nos circuitos.</li>
+      <li>Alinhe o conector da placa com o slot PCIe escolhido.</li>
+      <li>Pressione suavemente até ouvir um clique de encaixe.</li>
+    </ol>
+
+    <p class="highlight">
+      Nunca force! Se a placa não encaixar facilmente, revise o alinhamento.  
+      Forçar pode danificar o slot ou a própria placa.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>5. Fixando a Placa</h2>
+    <p>
+      Depois que a placa estiver firmemente encaixada, ela precisa ser fixada na parte traseira do gabinete.
+      Isso garante estabilidade e evita que o peso da placa cause pressão indevida no slot.
+    </p>
+
+    <ol>
+      <li>Alinhe o suporte metálico da placa com o local da tampa removida.</li>
+      <li>Insira o parafuso e aperte com firmeza moderada.</li>
+      <li>Verifique se a placa está perfeitamente reta e firme.</li>
+    </ol>
+
+    <div class="media-box small">
+      <img src="../images/fixando-placa.jpg" alt="Parafusando placa PCIe no gabinete">
+    </div>
+
+    <ul>
+      <li>Evite apertar demais — o metal pode deformar.</li>
+      <li>Verifique se o conector não ficou inclinado.</li>
+      <li>Certifique-se de que a placa não balança.</li>
+    </ul>
+
+    <p class="highlight">
+      A fixação correta evita vibrações e mau contato elétrico — duas causas comuns de falhas intermitentes.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>6. Considerações Técnicas</h2>
+    <p>
+      O padrão <strong>PCI Express</strong> evolui em gerações (PCIe 3.0, 4.0, 5.0...), que determinam a taxa de transferência de dados.  
+      Cada nova geração é compatível com as anteriores, mas funcionará na velocidade do componente mais lento.
+    </p>
+
+    <div class="media-box">
+      <img src="../images/pcie-geracoes.jpg" alt="Comparativo de gerações PCI Express">
+    </div>
+
+    <ul>
+      <li><strong>PCIe 3.0:</strong> ainda amplamente usado em placas de vídeo e SSDs NVMe.</li>
+      <li><strong>PCIe 4.0:</strong> dobro da velocidade, comum em CPUs modernas.</li>
+      <li><strong>PCIe 5.0:</strong> foco em GPUs e dispositivos de alto desempenho.</li>
+    </ul>
+
+    <p class="highlight">
+      Compatibilidade inversa é garantida — uma placa PCIe 3.0 funciona em um slot 4.0, apenas com menor largura de banda.
+    </p>
+  </section>
+
+  <section class="unit-section conclusion">
+    <h2>Conclusão</h2>
+    <p>
+      Com a placa de expansão instalada, o computador ganha novas funcionalidades — seja uma GPU, uma placa de som ou um adaptador de rede.
+    </p>
+    <p>
+      O processo de instalação é simples, mas requer paciência e atenção ao alinhamento e fixação.  
+      Cada detalhe faz diferença no desempenho e na longevidade do hardware.
+    </p>
+
+    <p class="highlight">
+      Um encaixe firme e bem parafusado é sinônimo de estabilidade e performance — princípios básicos de uma montagem profissional.
+    </p>
+  </section>
+<div class="quiz-navigation">
+    <button class="quiz-btn" onclick="window.location.href='../quizzes/quiz07.html'">
+      Ir para o Quiz da Unidade
+    </button>
+  </div>
+  <footer class="unit-footer">
+    <p>© 2025 HardXP — Aprendizado Gamificado de Hardware</p>
+  </footer>
+<script>
+            marcarConcluida(6);
+    </script>
+</body>
+</html>

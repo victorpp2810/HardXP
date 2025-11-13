@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conectando a Energia do PC | HardXP</title>
+  <link rel="stylesheet" href="../css/telainicial.css">
+  <link rel="stylesheet" href="../css/unidadesCSS/unidade08.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.location.href='../curso.html'">← Voltar</button>
+
+  <header class="unit-header">
+    <h1>Conectando a Energia do Computador</h1>
+    <p>Aprenda como alimentar cada componente corretamente e evitar falhas elétricas.</p>
+  </header>
+
+  <section class="unit-section intro">
+    <h2>Introdução: Alimentando o Computador</h2>
+    <p>
+      Para que um computador funcione de forma estável, cada componente precisa receber energia na <strong>voltagem correta</strong> e no <strong>formato adequado</strong>.  
+      Uma instalação incorreta pode causar falhas, reinicializações e até danos permanentes.
+    </p>
+    <p>
+      Nesta etapa, aprenderemos a conectar corretamente:
+    </p>
+
+    <ul>
+      <li>Conector ATX de 24 pinos — energia principal da placa-mãe</li>
+      <li>Conector ATX de 4 pinos — alimentação auxiliar da CPU</li>
+      <li>Conector FAN da CPU — resfriamento do processador</li>
+      <li>Conector SATA de 15 pinos — energia para SSD/HDD</li>
+      <li>Conector FAN do gabinete — ventilação interna</li>
+    </ul>
+
+    <div class="media-box">
+      <h4>Vídeo demonstrativo: Conectando os cabos de energia</h4>
+      <video controls poster="../images/conectores-thumb.jpg">
+        <source src="../videos/conectando-energia.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>1. Conector ATX de 24 Pinos — Alimentação Principal</h2>
+    <p>
+      Este é o <strong>principal conector de energia da placa-mãe</strong>.  
+      Ele fornece corrente elétrica para quase todos os circuitos e componentes do sistema.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/conector-24pinos.jpg" alt="Conector ATX de 24 pinos conectado à placa-mãe">
+    </div>
+
+    <ol>
+      <li><strong>Alinhar:</strong> identifique o soquete de 24 pinos na placa-mãe e o lado do clipe no conector. O clipe deve ficar voltado para fora.</li>
+      <li><strong>Pressionar:</strong> aplique firmeza até ouvir o <em>clique</em> de travamento.</li>
+    </ol>
+
+    <p class="highlight">
+      O clique é sinal de encaixe perfeito. Um conector mal encaixado é uma das causas mais comuns de PCs que não ligam.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>2. Conector ATX de 4 Pinos — Alimentação da CPU</h2>
+    <p>
+      Localizado próximo ao processador, esse conector fornece energia adicional à <strong>CPU</strong>.  
+      É essencial para manter estabilidade sob carga.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/conector-4pinos.jpg" alt="Conector de 4 pinos para alimentação da CPU">
+    </div>
+
+    <ol>
+      <li>Encontre o soquete de 4 pinos identificado como “CPU_PWR” ou “ATX12V”.</li>
+      <li>Alinhe o conector e pressione até travar.</li>
+    </ol>
+
+    <p class="highlight">
+      Assim como o de 24 pinos, o encaixe deve ser firme, mas nunca forçado.  
+      Se não encaixar facilmente, verifique a orientação.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>3. Conector da Ventoinha da CPU (CPU_FAN)</h2>
+    <p>
+      O <strong>CPU_FAN</strong> é o conector responsável por alimentar e controlar a ventoinha do cooler da CPU.  
+      Ele permite que a placa-mãe ajuste automaticamente a velocidade do ventilador de acordo com a temperatura.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/conector-cpufan.jpg" alt="Conector CPU_FAN próximo ao processador">
+    </div>
+
+    <ol>
+      <li>Localize o cabeçote “CPU_FAN” na placa-mãe.</li>
+      <li>Alinhe o conector (ele possui uma guia que impede a inversão).</li>
+      <li>Pressione suavemente até o fim. Não há clique.</li>
+    </ol>
+
+    <p class="highlight">
+      Sem o CPU_FAN conectado, o computador pode ligar, mas desligará rapidamente para se proteger do superaquecimento.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>4. Conector SATA de 15 Pinos — Alimentação do SSD/HDD</h2>
+    <p>
+      Os dispositivos de armazenamento SATA recebem energia através de um <strong>conector de 15 pinos</strong>, distinto do conector de dados.  
+      Ele é projetado para evitar conexões incorretas.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/conector-sata.jpg" alt="Cabo SATA de alimentação sendo conectado ao SSD">
+    </div>
+
+    <ol>
+      <li>Identifique o formato em “L” do conector — ele indica o lado correto de inserção.</li>
+      <li>Pressione o conector até que esteja completamente encaixado.</li>
+    </ol>
+
+    <p class="highlight">
+      Evite puxar pelo cabo. Ao desconectar, segure o corpo do conector para evitar danos nos fios.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>5. Conector da Ventoinha do Gabinete (SYS_FAN)</h2>
+    <p>
+      As ventoinhas do gabinete mantêm o fluxo de ar e ajudam a dissipar o calor de forma eficiente.  
+      Elas podem ter 3 ou 4 pinos, dependendo do controle de velocidade suportado.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/conector-sysfan.jpg" alt="Ventoinha do gabinete conectada à placa-mãe">
+    </div>
+
+    <ol>
+      <li>Encontre o conector “SYS_FAN” ou “CHA_FAN”.</li>
+      <li>Alinhe os pinos (há uma guia para o sentido correto).</li>
+      <li>Pressione suavemente até o encaixe total.</li>
+    </ol>
+
+    <p class="highlight">
+      Um bom fluxo de ar interno evita superaquecimento e prolonga a vida útil dos componentes.
+    </p>
+  </section>
+
+  <section class="unit-section conclusion">
+    <h2>Conclusão</h2>
+    <p>
+      Todos os conectores essenciais de energia estão agora corretamente instalados:
+    </p>
+    <ul>
+      <li>ATX 24 pinos — alimentação principal</li>
+      <li>ATX 4 pinos — energia da CPU</li>
+      <li>CPU_FAN — resfriamento do processador</li>
+      <li>SATA — energia do SSD/HDD</li>
+      <li>SYS_FAN — ventilação do gabinete</li>
+    </ul>
+
+    <p>
+      Com essa etapa concluída, o sistema está eletricamente funcional e pronto para receber os cabos de dados, GPU e os testes de inicialização.
+    </p>
+
+    <p class="highlight">
+      A alimentação é o “sistema circulatório” do computador — sem ela, nada funciona.  
+      Conexões firmes e bem orientadas são o segredo para uma montagem segura e duradoura.
+    </p>
+  </section>
+<div class="quiz-navigation">
+    <button class="quiz-btn" onclick="window.location.href='../quizzes/quiz08.html'">
+      Ir para o Quiz da Unidade
+    </button>
+  </div>
+  <footer class="unit-footer">
+    <p>© 2025 HardXP — Aprendizado Gamificado de Hardware</p>
+  </footer>
+<script>
+            marcarConcluida(7);
+    </script>
+</body>
+</html>

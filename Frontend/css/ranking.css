@@ -1,0 +1,86 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #e2e8f0;
+  font-weight: 600;
+  color: #334155;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+
+tr:hover {
+  background-color: #e0e7ff;
+  transition: 0.3s;
+}
+
+td:first-child {
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.medal {
+  font-size: 1.3rem;
+  margin-right: 8px;
+}
+
+/* Estilo do botão de voltar */
+.btn-voltar {
+    position: fixed;           /* Fica fixo na tela */
+    top: 15px;                 /* Distância do topo */
+    left: 15px;                /* Distância da esquerda */
+    background-color: #007BFF; /* Azul padrão */
+    color: white;              /* Cor do texto */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instalando a CPU | HardXP</title>
+  <link rel="stylesheet" href="../css/telainicial.css">
+  <link rel="stylesheet" href="../css/unidadesCSS/unidade04.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.location.href='../curso.html'">← Voltar</button>
+
+  <header class="unit-header">
+    <h1>Instalando o “Cérebro” do Computador</h1>
+    <p>A CPU é o núcleo lógico do sistema. Aprenda a instalá-la com segurança e precisão, garantindo desempenho e durabilidade.</p>
+  </header>
+
+  <section class="unit-section intro">
+    <h2>Introdução: Preparando-se para Instalar a CPU</h2>
+    <p>
+      A <strong>CPU (Unidade Central de Processamento)</strong> é responsável por executar instruções, realizar cálculos e coordenar todas as tarefas do computador.
+      Instalá-la corretamente na placa-mãe é um processo que exige cuidado, limpeza e atenção aos detalhes.
+    </p>
+    <p>
+      Embora pareça uma etapa delicada, o processo é simples se feito com calma e na sequência correta. Vamos acompanhar cada passo e entender a lógica por trás da instalação.
+    </p>
+
+    <div class="media-box">
+      <h4>Vídeo demonstrativo: Instalação correta da CPU</h4>
+      <video controls poster="../images/cpu-install-thumb.jpg">
+        <source src="../videos/instalacao-cpu.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>1. Identificando o Pino 1 da CPU</h2>
+    <p>
+      Toda CPU possui um marcador de orientação — normalmente um pequeno <strong>triângulo dourado</strong> em um dos cantos, indicando o <strong>Pino 1</strong>. 
+      Esse triângulo deve ser alinhado com o triângulo correspondente no soquete da placa-mãe.
+    </p>
+    <p>
+      A orientação correta é essencial, pois garante o alinhamento exato dos contatos elétricos. Inserir a CPU na posição errada pode dobrar pinos (em modelos AMD) ou danificar o soquete (em modelos Intel LGA).
+    </p>
+    <div class="media-box small">
+      <img src="../images/pino1-cpu.jpg" alt="Triângulo dourado indicando o pino 1 da CPU">
+    </div>
+    <p class="highlight">
+      <strong>Dica:</strong> Nunca force a CPU. Se ela não encaixar com facilidade, pare e verifique a orientação. A instalação deve ser suave.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>2. Alinhamento com o Soquete</h2>
+    <p>
+      O soquete da placa-mãe possui o mesmo marcador triangular e entalhes que impedem a instalação incorreta. 
+      Esses entalhes guiam a CPU, garantindo que o encaixe ocorra apenas na orientação correta.
+    </p>
+
+    <div class="media-box">
+      <img src="../images/soquete-alinhamento.jpg" alt="Soquete da placa-mãe com marcação do pino 1">
+    </div>
+
+    <p>
+      Existem dois tipos principais de encaixe:
+    </p>
+    <ul>
+      <li><strong>LGA (Land Grid Array):</strong> usado pela Intel; os pinos estão no soquete.</li>
+      <li><strong>PGA (Pin Grid Array):</strong> usado pela AMD; os pinos estão na CPU.</li>
+    </ul>
+  </section>
+
+  <section class="unit-section">
+    <h2>3. Inserindo a CPU no Soquete</h2>
+    <p>
+      Após alinhar a marcação, siga o procedimento:
+    </p>
+    <ol>
+      <li>Levante a alavanca metálica do soquete (ou a tampa, em modelos LGA).</li>
+      <li>Segure a CPU pelas bordas — nunca toque nos pinos ou nos contatos dourados.</li>
+      <li>Coloque a CPU suavemente no encaixe, deixando-a assentar sozinha.</li>
+      <li>Feche a tampa metálica (se houver) e abaixe a alavanca até travar.</li>
+    </ol>
+    <div class="media-box">
+      <img src="../images/instalando-cpu.jpg" alt="Técnico instalando CPU na placa-mãe">
+    </div>
+    <p class="highlight">
+      Quando travada corretamente, a CPU fica firme e perfeitamente nivelada com o soquete — sem folgas ou inclinações.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>4. Aplicando Pasta Térmica</h2>
+    <p>
+      A <strong>pasta térmica</strong> é responsável por transferir o calor da CPU para o dissipador. Ela preenche microfissuras invisíveis na superfície metálica dos componentes, 
+      garantindo contato térmico uniforme.
+    </p>
+    <p>
+      A quantidade ideal é equivalente a uma <strong>gota do tamanho de uma ervilha</strong> no centro da CPU. Evite excessos — pasta demais forma uma barreira e atrapalha o resfriamento.
+    </p>
+
+    <div class="media-box small">
+      <img src="../images/pasta-termica.jpg" alt="Aplicação correta de pasta térmica sobre a CPU">
+    </div>
+
+    <p class="highlight">
+      <strong>Erro comum:</strong> espalhar a pasta manualmente. O próprio peso do dissipador fará a distribuição uniforme quando for fixado.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>5. Instalando o Dissipador de Calor (Cooler)</h2>
+    <p>
+      O dissipador é responsável por remover o calor gerado pela CPU. Ele é composto por aletas metálicas e uma ventoinha, que circula o ar frio e dissipa o ar quente.
+    </p>
+    <p>
+      Antes de fixá-lo, verifique o tipo de encaixe:
+    </p>
+    <ul>
+      <li>Clipes laterais (em coolers box AMD antigos).</li>
+      <li>Parafusos diagonais (em coolers modernos Intel/AMD).</li>
+      <li>Suportes de pressão (em modelos padrão Intel LGA).</li>
+    </ul>
+    <div class="media-box">
+      <img src="../images/dissipador-cpu.jpg" alt="Dissipador de calor com ventoinha montado sobre a CPU">
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>6. Parafusando o Dissipador — Ordem Correta</h2>
+    <p>
+      A fixação do dissipador deve seguir um padrão cruzado para aplicar pressão uniforme sobre o processador:
+    </p>
+    <ol>
+      <li>Aperte um parafuso de um canto.</li>
+      <li>Passe ao canto diagonal oposto.</li>
+      <li>Repita nos outros dois cantos.</li>
+      <li>Verifique se o dissipador não se move.</li>
+    </ol>
+
+    <div class="media-box small">
+      <img src="../images/parafusando-dissipador.jpg" alt="Ordem cruzada para parafusar dissipador de CPU">
+    </div>
+
+    <p class="highlight">
+      Essa ordem evita pressão desigual e assegura que a pasta térmica se espalhe de forma ideal, mantendo a eficiência térmica máxima.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>7. Conectando o Cabo do Cooler</h2>
+    <p>
+      Por fim, conecte o cabo da ventoinha do cooler ao conector <strong>CPU_FAN</strong> da placa-mãe. 
+      Esse conector permite que a BIOS monitore e controle a rotação da ventoinha conforme a temperatura do processador.
+    </p>
+
+    <div class="media-box">
+      <img src="../images/cpu-fan-connector.jpg" alt="Conector CPU_FAN na placa-mãe">
+    </div>
+
+    <p>
+      Evite confundir com o conector <strong>CHA_FAN</strong> (usado para ventoinhas do gabinete). 
+      Uma conexão errada fará o cooler não girar — e isso pode superaquecer a CPU rapidamente.
+    </p>
+  </section>
+
+  <section class="unit-section conclusion">
+    <h2>Conclusão</h2>
+    <p>
+      Instalar uma CPU corretamente exige atenção e respeito à sequência: orientação correta, aplicação adequada da pasta térmica, fixação cuidadosa do dissipador e conexão segura do cooler.
+    </p>
+    <p>
+      Quando bem instalada, a CPU trabalha fria, estável e eficiente — garantindo o melhor desempenho possível do computador.
+    </p>
+    <p class="highlight">
+      Um técnico que domina essa etapa demonstra precisão, paciência e conhecimento — características fundamentais para quem lida com hardware profissionalmente.
+    </p>
+  </section>
+<div class="quiz-navigation">
+    <button class="quiz-btn" onclick="window.location.href='../quizzes/quiz04.html'">
+      Ir para o Quiz da Unidade
+    </button>
+  </div>
+  <footer class="unit-footer">
+    <p>© 2025 HardXP — Aprendizado Gamificado de Hardware</p>
+  </footer>
+<script>
+            marcarConcluida(3);
+    </script>
+</body>
+</html>

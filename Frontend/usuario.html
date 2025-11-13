@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="icon" href="../Frontend/images/logo.jpg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="./css/usuario.css" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.history.back()">← Voltar</button>
+
+    <div class="profile-container">
+
+        <header class="profile-header">
+            <div class="profile-avatar">
+                <img src="./images/user.png" alt="Avatar do usuário" id="avatarImg">
+                <button class="avatar-edit-btn" onclick="changeAvatar()">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <input type="file" id="fotoInput" accept="image/*" style="display:none;">
+            <div class="profile-info">
+                <h1 id="userName">Usuário</h1>
+                <p id="userEmail">email@gmail.com</p>
+                <span class="user-status">Usuário Ativo</span>
+            </div>
+        </header>
+
+        <main class="profile-main">
+            <div class="profile-tabs">
+                <button class="tab-btn active" onclick="showTab('personal')">
+                    <i class="fas fa-user"></i>
+                    Dados Pessoais
+                </button>
+                <button class="tab-btn" onclick="showTab('stats')">
+                    <i class="fas fa-chart-bar"></i>
+                    Estatísticas
+                </button>
+                <button class="tab-btn" onclick="showTab('security')">
+                    <i class="fas fa-shield-alt"></i>
+                    Segurança
+                </button>
+                <button class="tab-btn" onclick="showTab('badges')">
+                    <i class="fas fa-medal"></i>
+                    Insígnias
+                </button>
+
+            </div>
+
+            <div class="tab-content">
+                <!-- Dados Pessoais -->
+                <div id="personal" class="tab-pane active">
+                    <div class="section-header">
+                        <h2>Informações Pessoais</h2>
+                        <button class="edit-btn" onclick="toggleEdit('personal')">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Nome Completo</label>
+                            <div class="info-value">
+                                <span id="fullNameDisplay">Usuário</span>
+                                <input type="text" id="fullNameEdit" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <label>Email</label>
+                            <div class="info-value">
+                                <span id="emailDisplay">email@gmail.com</span>
+                                <input type="email" id="emailEdit" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <label>CPF</label>
+                            <div class="info-value">
+                                <span id="cpfDisplay">123.456.789-00</span>
+                                <input type="text" id="cpfEdit" style="display: none;" maxlength="14">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="edit-actions" id="personalActions" style="display: none;">
+                        <button class="save-btn" onclick="saveChanges('personal')">
+                            <i class="fas fa-save"></i>
+                            Salvar
+                        </button>
+                        <button class="cancel-btn" onclick="cancelEdit('personal')">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estatísticas -->
+                <div id="stats" class="tab-pane">
+                    <div class="section-header">
+                        <h2>Suas Estatísticas</h2>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Etapas Concluídas</h3>
+                                <span class="stat-value">00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Quizzes Realizados</h3>
+                                <span class="stat-value">00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Posição no Ranking</h3>
+                                <span class="stat-value">257</span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Pontuação Total</h3>
+                                <span class="stat-value">0.000</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Segurança -->
+                <div id="security" class="tab-pane">
+                    <div class="section-header">
+                        <h2>Configurações de Segurança</h2>
+                    </div>
+                    
+                    <div class="security-section">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Alterar Senha</h3>
+                                <p>Mantenha sua conta segura com uma senha forte</p>
+                            </div>
+                            <button class="action-btn" onclick="window.location.href='senha.html'">
+                                <i class="fas fa-key"></i>
+                                Alterar
+                            </button>
+                        </div>
+                        
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Excluir Conta</h3>
+                                <p>Remover permanentemente sua conta e dados</p>
+                            </div>
+                            <button class="action-btn danger" onclick="deleteAccount()">
+                                <i class="fas fa-trash"></i>
+                                Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Insígnias -->
+                <div id="badges" class="tab-pane">
+                    <div class="section-header">
+                        <h2>Suas Insígnias</h2>
+                    </div>
+
+                    <div class="badges-grid">
+                        <div class="badge-card">
+                            <img src="./images/insignia1.png" alt="Insígnia 1">
+                            <div class="badge-overlay">
+                                <h3>Primeiro Acesso</h3>
+                                <p>Conquistada ao entrar pela primeira vez na plataforma.</p>
+                            </div>
+                        </div>
+
+                        <div class="badge-card">
+                            <img src="./images/insignia2.png" alt="Insígnia 2">
+                            <div class="badge-overlay">
+                                <h3>Top 10 Ranking</h3>
+                                <p>Alcançou o top 10 dos melhores jogadores.</p>
+                            </div>
+                        </div>
+
+                        <div class="badge-card">
+                            <img src="./images/insignia3.png" alt="Insígnia 3">
+                            <div class="badge-overlay">
+                                <h3>Aprendiz Dedicado</h3>
+                                <p>Completou todos os quizzes de uma etapa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
+    </div>
+    <script src="javaScript/senha.js"></script>
+    <script src="./javaScript/usuario.js"></script>
+</body>
+</html>
+

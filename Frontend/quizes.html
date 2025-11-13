@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzes - HardXP | Plataforma Gamificada de Hardware</title>
+  <link rel="icon" href="../Frontend/images/logo.jpg" />
+  <link rel="stylesheet" href="./css/telaInicial.css">
+  <link rel="stylesheet" href="./css/curso.css">
+  <link rel="stylesheet" href="./css/quizes.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <button class="btn-voltar" onclick="window.location.href = 'menuPrincipal.html'">← Voltar</button>
+      <div class="nav-container">
+        <div class="logo">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">HardXP</span>
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">
+            <img id="userPhoto" src="./images/user.png" alt="Foto de Perfil">
+          </div>
+          <div class="user-info">
+            <span class="user-name" id="userName">Nome do Usuário</span>
+            <span class="user-level" id="userLevel">CPF: indefinido</span>
+          </div>
+          <div class="user-xp">
+            <span class="xp-amount" id="userXP">0000 XP</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Painel de Estatísticas -->
+  <section class="quizzes-hero">
+    <div class="container">
+      <h1 class="section-title">Quizzes</h1>
+      <p class="section-description">
+        Teste seus conhecimentos e avance nas trilhas de hardware!
+      </p>
+
+      <div class="quiz-stats">
+        <div class="quiz-stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <span class="stat-value" id="quizzesCompletos">0</span>
+            <span class="stat-label">Concluídos</span>
+          </div>
+        </div>
+        <div class="quiz-stat-card">
+          <div class="stat-icon">📈</div>
+          <div class="stat-info">
+            <span class="stat-value" id="taxaAcerto">0%</span>
+            <span class="stat-label">Taxa de Acerto</span>
+          </div>
+        </div>
+        <div class="quiz-stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-info">
+            <span class="stat-value" id="tempoTotal">0h 00m</span>
+            <span class="stat-label">Tempo Total</span>
+          </div>
+        </div>
+        <div class="quiz-stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-info">
+            <span class="stat-value" id="xpTotal">0000</span>
+            <span class="stat-label">XP Total</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de Quizzes -->
+  <section class="courses-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Quizzes Disponíveis</h2>
+        <p class="section-description">Escolha o tema e teste seus conhecimentos.</p>
+      </div>
+
+      <div class="courses-grid" id="quizzesGrid"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="logo">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">HardXP</span>
+        </div>
+        <p class="footer-description">Transformando o aprendizado de hardware através da gamificação</p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HardXP. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./javaScript/quizes.js"></script>
+</body>
+</html>

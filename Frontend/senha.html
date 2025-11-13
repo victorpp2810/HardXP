@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HardXP</title>
+    <link rel="icon" href="../Frontend/images/logo.jpg" />
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.history.back()">← Voltar</button>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Trocar senha</h1>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input placeholder="Senha1234" type="password" name="senha" id="senha">
+                </div>
+                
+                <div class="input-group">
+                    <label for="confirmarSenha">Confirmar senha</label>
+                    <input placeholder="Senha1234" type="password" name="confirmarSenha" id="confirmarSenha">
+                </div>
+                
+
+                <button type="submit" class="login-btn">trocar minha senha</button>
+            </form>
+        </div>
+        
+        <div class="background-decoration">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+    </div>
+
+    <script src="./javaScript/senha.js"></script>
+</body>
+</html>

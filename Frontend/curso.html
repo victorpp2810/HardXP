@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - HardXP | Plataforma Gamificada de Hardware</title>
+    <meta name="description" content="Explore todos os cursos de hardware disponíveis na HardXP">
+    <link rel="icon" href="../Frontend/images/logo.jpg" />
+    <link rel="stylesheet" href="./css/telaInicial.css">
+    <link rel="stylesheet" href="./css/curso.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <button class="btn-voltar" onclick="window.location.href = 'menuPrincipal.html'">← Voltar</button>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">HardXP</span>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img id="userPhoto" src="./images/user.png" alt="Foto de Perfil">
+                        </div>
+
+                        <div class="user-info">
+                            <span class="user-name" id="userName">Nome do Usuário</span>
+                            <span class="user-level" id="userLevel">CPF: indefinido</span>
+                        </div>
+                        <div class="user-xp">
+                            <span class="xp-amount" id="userXP">0000 XP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Courses -->
+    <section class="courses-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">📚</span>
+                    <span>Trilhas de Aprendizado</span>
+                </div>
+                <h1 class="hero-title">
+                    Domine <span class="gradient-text">Hardware</span><br>
+                    Passo a Passo
+                </h1>
+                <p class="hero-description">
+                    Escolha sua trilha de aprendizado e evolua do básico ao avançado. 
+                    Cada curso é cuidadosamente estruturado para maximizar seu aprendizado.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trilhas Disponíveis</h2>
+                <p class="section-description">
+                    Escolha a sua próxima trilha na ordem que a gente mais recomenda
+                </p>
+            </div>
+            
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Os cursos serão carregados dinamicamente via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path Section -->
+    <section class="learning-path">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sua Trilha de Aprendizado</h2>
+                <p class="section-description">
+                    Veja todas as unidades que você já fez
+                </p>
+            </div>
+            
+            <div class="path-container" id="learningPath">
+                <!-- A trilha será carregada dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">HardXP</span>
+                    </div>
+                    <p class="footer-description">
+                        Transformando o aprendizado de hardware através da gamificação
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Plataforma</h4>
+                        <a href="menuPrincipal.html">Menu Principal</a>
+                        <a href="quizes.html">Quizzes</a>
+                        <a href="ranking.html">Ranking</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Privacidade</a>
+                        <a href="#">Termos</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HardXP. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="./javaScript/curso.js"></script>
+</body>
+</html>

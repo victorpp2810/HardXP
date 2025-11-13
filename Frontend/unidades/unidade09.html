@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conectores de Dados SATA | HardXP</title>
+  <link rel="stylesheet" href="../css/telainicial.css">
+  <link rel="stylesheet" href="../css/unidadesCSS/unidade09.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="btn-voltar" onclick="window.location.href='../curso.html'">← Voltar</button>
+
+  <header class="unit-header">
+    <h1>Conectores de Dados SATA</h1>
+    <p>Entenda como as unidades de armazenamento se comunicam com a placa-mãe.</p>
+  </header>
+
+  <section class="unit-section intro">
+    <h2>Introdução: O que são Conectores de Dados?</h2>
+    <p>
+      Além de energia, dispositivos como <strong>SSDs e HDDs</strong> precisam de um cabo de dados para transmitir informações à placa-mãe.
+      Esses cabos utilizam o <strong>padrão SATA (Serial ATA)</strong>, responsável pela comunicação entre o armazenamento e o sistema operacional.
+    </p>
+    <p>
+      O conector de dados SATA é:
+    </p>
+    <ul>
+      <li>Menor e mais estreito que o de energia</li>
+      <li>Chaveado em formato de “L”, impedindo encaixes incorretos</li>
+      <li>Sempre usado junto com o cabo de energia SATA</li>
+    </ul>
+
+    <div class="media-box">
+      <h4>Vídeo demonstrativo: Instalação dos cabos SATA</h4>
+      <video controls poster="../images/sata-thumb.jpg">
+        <source src="../videos/instalando-cabo-sata.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+    </div>
+  </section>
+
+  <section class="unit-section">
+    <h2>1. Identificando as Portas SATA na Placa-Mãe</h2>
+    <p>
+      Na placa-mãe, as portas SATA geralmente aparecem agrupadas e identificadas por nomes como:
+      <strong>SATA0, SATA1, SATA2 e SATA3</strong>.
+    </p>
+    <p>
+      Cada porta permite conectar um dispositivo de armazenamento, como:
+    </p>
+    <ul>
+      <li>SSDs SATA</li>
+      <li>Discos rígidos (HDDs)</li>
+      <li>Unidades ópticas (DVD/Blu-ray)</li>
+    </ul>
+
+    <div class="media-box small">
+      <img src="../images/portas-sata-placa.jpg" alt="Portas SATA na placa-mãe identificadas como SATA0, SATA1, SATA2, SATA3">
+    </div>
+
+    <p class="highlight">
+      A numeração das portas ajuda na organização: conecte o SSD principal no <strong>SATA0</strong> para garantir prioridade de inicialização.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>2. Identificando os Conectores no SSD/HDD</h2>
+    <p>
+      Na parte traseira de uma unidade de armazenamento SATA, há dois conectores distintos:
+    </p>
+
+    <ul>
+      <li><strong>Conector de alimentação SATA:</strong> maior, com 15 pinos.</li>
+      <li><strong>Conector de dados SATA:</strong> menor, com cerca de 7 pinos.</li>
+    </ul>
+
+    <div class="media-box small">
+      <img src="../images/conectores-ssd.jpg" alt="Conectores de alimentação e dados SATA em um SSD">
+    </div>
+
+    <p>
+      O conector menor é o responsável pela transmissão de dados, conectando a unidade à placa-mãe.
+    </p>
+
+    <p class="highlight">
+      Nunca confunda os cabos: o de energia vem da <strong>fonte</strong>, o de dados vem da <strong>placa-mãe</strong>.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>3. Etapa 1 – Conectando o Cabo SATA na Placa-Mãe</h2>
+    <p>
+      Para conectar o cabo de dados corretamente:
+    </p>
+
+    <ol>
+      <li><strong>Alinhar:</strong> verifique o entalhe em forma de “L” no conector SATA e na porta da placa-mãe.</li>
+      <li><strong>Encaixar:</strong> pressione suavemente até que o cabo entre completamente, sem aplicar força excessiva.</li>
+    </ol>
+
+    <div class="media-box small">
+      <img src="../images/cabo-sata-placa.jpg" alt="Conectando cabo SATA na placa-mãe">
+    </div>
+
+    <p class="highlight">
+      Um encaixe parcial pode fazer o SSD ou HDD não ser reconhecido pelo sistema.
+    </p>
+  </section>
+
+  <section class="unit-section">
+    <h2>4. Etapa 2 – Conectando o Cabo SATA no SSD/HDD</h2>
+    <p>
+      O outro lado do cabo SATA vai conectado à unidade de armazenamento.
+      Muitos cabos possuem um conector em <strong>ângulo reto</strong>, ideal para gabinetes compactos.
+    </p>
+
+    <ol>
+      <li><strong>Alinhar:</strong> encaixe o conector em formato de “L” com o lado correto da unidade.</li>
+      <li><strong>Pressionar:</strong> empurre até o encaixe firme — sem torções ou força lateral.</li>
+    </ol>
+
+    <div class="media-box small">
+      <img src="../images/cabo-sata-ssd.jpg" alt="Conectando cabo SATA em um SSD">
+    </div>
+
+    <p class="highlight">
+      Mantenha o cabo bem posicionado e evite dobras acentuadas para não danificar os fios internos.
+    </p>
+  </section>
+
+  <section class="unit-section conclusion">
+    <h2>Conclusão</h2>
+    <p>
+      A instalação dos cabos de dados SATA é uma das etapas mais simples, mas também uma das mais essenciais.
+      Sem ela, o computador não conseguiria “conversar” com o SSD ou HDD.
+    </p>
+    <ul>
+      <li>Identificar portas SATA na placa-mãe ✅</li>
+      <li>Distinguir energia e dados ✅</li>
+      <li>Conectar corretamente na placa-mãe ✅</li>
+      <li>Conectar corretamente na unidade ✅</li>
+    </ul>
+
+    <p>
+      Com os cabos de energia e dados instalados, a unidade de armazenamento está pronta para receber o sistema operacional e funcionar plenamente.
+    </p>
+
+    <p class="highlight">
+      Dados e energia são como cérebro e coração — um sem o outro não funciona.  
+      Conecte com atenção, e seu computador funcionará de forma rápida e confiável.
+    </p>
+  </section>
+<div class="quiz-navigation">
+    <button class="quiz-btn" onclick="window.location.href='../quizzes/quiz09.html'">
+      Ir para o Quiz da Unidade
+    </button>
+  </div>
+  <footer class="unit-footer">
+    <p>© 2025 HardXP — Aprendizado Gamificado de Hardware</p>
+  </footer>
+<script>
+            marcarConcluida(8);
+    </script>
+</body>
+</html>
