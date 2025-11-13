@@ -54,29 +54,49 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!grid) return;
   grid.innerHTML = "";
 
-  curso.unidades.forEach((u, index) => {
-    const concluida = progressoSalvo.concluido.includes(index);
-    const icone = concluida ? "✅" : "📘";
-    const btnTexto = concluida ? "Concluído" : "Acessar Unidade";
-    const btnClasse = concluida ? "completed" : "continue";
+  curso.unidades.forEach(async (u, index) => {
+  const usuarioId = localStorage.getItem("id");
 
-    const card = document.createElement("div");
-    card.classList.add("course-card");
-    card.innerHTML = `
-      <div class="course-content">
-        <span class="course-category">Unidade ${index + 1}</span>
-        <h3 class="course-title">${icone} ${u.titulo}</h3>
-        <p class="course-description">${u.descricao || ""}</p>
-        <div class="course-stats">
-          <span>🎯 ${u.xp} XP</span>
-        </div>
-        <button class="course-btn ${btnClasse}" onclick="window.location.href='${u.link}'">
-          ${btnTexto}
-        </button>
+  // 🔍 Verifica se a unidade pode ser acessada
+  const res = await fetch(`http://localhost:2000/progresso/${usuarioId}/${index + 1}`);
+  const { acesso } = await res.json();
+
+  const bloqueado = !acesso;
+  const concluida = progressoSalvo.concluido.includes(index);
+
+  const icone = concluida ? "✅" : bloqueado ? "🔒" : "📘";
+  const btnTexto = bloqueado ? "Bloqueado" : concluida ? "Concluído" : "Acessar Unidade";
+
+  const btnClasse = bloqueado ? "locked" : concluida ? "completed" : "continue";
+
+  // CARD DA UNIDADE
+  const card = document.createElement("div");
+  card.classList.add("course-card");
+
+  card.innerHTML = `
+    <div class="course-content">
+      <span class="course-category">Unidade ${index + 1}</span>
+      <h3 class="course-title">${icone} ${u.titulo}</h3>
+      <p class="course-description">${u.descricao || ""}</p>
+      <div class="course-stats">
+        <span>🎯 ${u.xp} XP</span>
       </div>
-    `;
-    grid.appendChild(card);
-  });
+      <button class="course-btn ${btnClasse}" ${bloqueado ? "disabled" : ""}>
+        ${btnTexto}
+      </button>
+    </div>
+  `;
+
+  // 🔓 Só permite clicar se estiver desbloqueado
+  if (!bloqueado) {
+    card.querySelector("button").onclick = () => {
+      window.location.href = u.link;
+    };
+  }
+
+  grid.appendChild(card);
+});
+
 
   document.querySelectorAll(".course-card").forEach(card => {
     card.addEventListener("mouseenter", () => card.classList.add("hover"));

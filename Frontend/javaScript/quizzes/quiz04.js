@@ -116,7 +116,24 @@ nextBtn.addEventListener("click", () => {
     if (typeof marcarConcluida === "function") {
       marcarConcluida(3);
     }
-    window.location.href = "./unidade05.html";
+    fetch("http://localhost:2000/progresso", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usuarioId: localStorage.getItem("id"),
+        unidade: 4 // unidade do quiz01
+      })
+    })
+    .then(() => console.log("Progresso da unidade 4 salvo com sucesso"))
+    .catch((err) => console.error("Erro ao salvar progresso:", err));
+
+    // 🔹 MENSAGEM FINAL
+    questionText.textContent = `Você concluiu o quiz da Unidade 4!`;
+    optionsBox.innerHTML = "";
+    nextBtn.remove();
+    setTimeout(() => {
+      window.location.href = "../unidades/unidade05.html";
+    }, 2500);
   }
 });
 

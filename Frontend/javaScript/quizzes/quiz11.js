@@ -160,6 +160,22 @@ nextBtn.onclick = () => {
     questionText.textContent = `Parabéns! Você concluiu o último quiz do curso de Hardware!`;
     optionsBox.innerHTML = "";
     nextBtn.remove();
+     fetch("http://localhost:2000/progresso", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usuarioId: localStorage.getItem("id"),
+        unidade: 11 // unidade do quiz01
+      })
+    })
+    .then(() => console.log("Progresso da unidade 11 salvo com sucesso"))
+    .catch((err) => console.error("Erro ao salvar progresso:", err));
+
+    // 🔹 MENSAGEM FINAL
+    questionText.textContent = `Você concluiu o quiz da Unidade 11!`;
+    optionsBox.innerHTML = "";
+    nextBtn.remove();
+
     setTimeout(() => {
       window.location.href = "../curso.html";
     }, 3500);

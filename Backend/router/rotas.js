@@ -182,12 +182,53 @@ rotas.get("/usuario/:id/foto", (req, res) => {
       return res.status(404).json({ message: "Foto não encontrada." });
     }
 
-    // retorna o binário da imagem
     res.setHeader("Content-Type", "image/jpeg");
     res.end(row.fotoPerfil); 
   });
 });
 
+rotas.post("/progresso", (req, res) => {
+  const { usuarioId, unidade } = req.body;
+
+  if (!usuarioId || !unidade) {
+    return res.status(400).json({ message: "Dados incompletos." });
+  }
+
+  db.run(
+    `INSERT OR REPLACE INTO progresso (usuarioId, unidade, quizConcluido)
+     VALUES (?, ?, 1)`,
+    [usuarioId, unidade],
+    (err) => {
+      if (err) {
+        console.error("Erro ao salvar progresso:", err);
+        return res.status(500).json({ message: "Erro ao salvar progresso." });
+      }
+      res.json({ message: "Progresso salvo com sucesso!" });
+    }
+  );
+});
+
+rotas.get("/progresso/:usuarioId/:unidade", (req, res) => {
+  const { usuarioId, unidade } = req.params;
+
+  if (unidade == 1) {
+    return res.json({ acesso: true }); // unidade 1 sempre liberada
+  }
+
+  db.get(
+    `SELECT quizConcluido FROM progresso WHERE usuarioId = ? AND unidade = ?`,
+    [usuarioId, unidade - 1],
+    (err, row) => {
+      if (err) return res.status(500).json({ message: "Erro ao verificar progresso." });
+
+      if (row && row.quizConcluido) {
+        res.json({ acesso: true });
+      } else {
+        res.json({ acesso: false });
+      }
+    }
+  );
+});
 
 
 export default rotas;

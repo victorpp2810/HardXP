@@ -160,6 +160,23 @@ nextBtn.onclick = () => {
     questionText.textContent = "Você concluiu o quiz da Unidade 2!";
     optionsBox.innerHTML = "";
     nextBtn.remove();
+
+    fetch("http://localhost:2000/progresso", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usuarioId: localStorage.getItem("id"),
+        unidade: 2 // unidade do quiz01
+      })
+    })
+    .then(() => console.log("Progresso da unidade 2 salvo com sucesso"))
+    .catch((err) => console.error("Erro ao salvar progresso:", err));
+
+    // 🔹 MENSAGEM FINAL
+    questionText.textContent = `Você concluiu o quiz da Unidade 2!`;
+    optionsBox.innerHTML = "";
+    nextBtn.remove();
+
     setTimeout(() => {
       window.location.href = "../unidades/unidade03.html";
     }, 2500);

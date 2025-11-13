@@ -86,6 +86,17 @@ db.serialize(() => {
             descricao TEXT
         )
     `);
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS progresso (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario_id INTEGER,
+            unidade INTEGER,
+            quiz_concluido BOOLEAN DEFAULT 0,
+            FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+        )
+
+    `);
 });
 
 export default db;
