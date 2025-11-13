@@ -27,6 +27,6 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 ```powershell
 npm start
 ```
-e pressione Enter. 
-8. Navegue até a pasta frontend no VS Code. 
+e pressione Enter.  
+8. Navegue até a pasta frontend no VS Code.  
 9. Clique com o botão direito no arquivo paginaInicial.html → Abrir com o navegador (ou via Live Server, se preferir).
