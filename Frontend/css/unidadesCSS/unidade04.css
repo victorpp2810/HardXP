@@ -122,7 +122,6 @@ footer.unit-footer {
   transform: translateY(-2px);
 }
 
-/* Estilo do botão de voltar */
 .btn-voltar {
     position: fixed;           /* Fica fixo na tela */
     top: 15px;                 /* Distância do topo */

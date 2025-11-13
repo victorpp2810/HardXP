@@ -1,165 +1,4 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   // Dados do curso (pode ser substituído por fetch futuramente)
-//   const curso = {
-//     titulo: "Hardware Básico",
-//     descricao: "Aprenda os fundamentos do hardware: componentes, funções e montagem de computadores.",
-//     progresso: 35,
-//     unidades: [
-//       {
-//         titulo: "Introdução ao Hardware",
-//         descricao: "O que é hardware e qual sua importância.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade01.html"
-//       },
-//       {
-//         titulo: "Placa-Mãe e Chipset",
-//         descricao: "Conheça o coração do computador e seus principais conectores.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade02.html"
-//       },
-//       {
-//         titulo: "Memórias RAM e ROM",
-//         descricao: "Entenda as diferenças e aplicações entre RAM, ROM e caches.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade03.html"
-//       },
-//       {
-//         titulo: "Armazenamento de Dados",
-//         descricao: "HDs, SSDs e a evolução dos dispositivos de armazenamento.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade04.html"
-//       },
-//       {
-//         titulo: "Processador e Desempenho",
-//         descricao: "O cérebro do computador: arquitetura, clock e núcleos.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade05.html"
-//       },
-//       {
-//         titulo: "Fonte de Alimentação",
-//         descricao: "A PSU — o coração elétrico que distribui energia com segurança.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade06.html"
-//       },
-//       {
-//         titulo: "Instalando a CPU e Dissipador",
-//         descricao: "Como instalar o processador, aplicar pasta térmica e fixar o cooler.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade07.html"
-//       },
-//       {
-//         titulo: "Instalando a Placa-Mãe",
-//         descricao: "Alinhamento, espaçadores e fixação correta dentro do gabinete.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade08.html"
-//       },
-//       {
-//         titulo: "Instalando Armazenamento e Leitores",
-//         descricao: "Montagem de SSDs, HDDs e unidades ópticas.",
-//         xp: 100,
-//         status: "concluido",
-//         link: "./unidades/unidade09.html"
-//       },
-//       {
-//         titulo: "Conectando Energia e Dados",
-//         descricao: "Instalação dos cabos de energia, dados SATA e painel frontal.",
-//         xp: 100,
-//         status: "atual",
-//         link: "./unidades/unidade10.html"
-//       },
-//       {
-//         titulo: "Fechamento e Teste Final",
-//         descricao: "Conecte cabos externos, feche o gabinete e prepare o primeiro boot.",
-//         xp: 100,
-//         status: "liberado",
-//         link: "./unidades/unidade11.html"
-//       }
-//     ]
-//   };
-
-//   // Atualiza título e cabeçalho do curso
-//   document.title = `Curso - ${curso.titulo} | HardXP`;
-
-//   const heroSection = document.querySelector(".courses-hero, .course-hero");
-//   if (heroSection) {
-//     heroSection.innerHTML = `
-//       <div class="container">
-//         <div class="course-header" style="text-align:center; margin-top:2rem;">
-//           <h1 class="hero-title">${curso.titulo}</h1>
-//           <p class="hero-description">${curso.descricao}</p>
-//           <div class="course-progress" style="max-width:500px; margin:1.5rem auto;">
-//             <div class="progress-bar">
-//               <div class="progress" style="width: ${curso.progresso}%;"></div>
-//             </div>
-//             <p class="progress-text">${curso.progresso}% concluído</p>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-//   }
-
-//   // Container das unidades
-//   const grid = document.querySelector(".courses-grid");
-//   if (!grid) return;
-//   grid.innerHTML = "";
-
-//   // Geração dinâmica dos cards das unidades
-//   curso.unidades.forEach((u, index) => {
-//     const card = document.createElement("div");
-//     card.classList.add("course-card");
-
-//     const icone =
-//       u.status === "concluido" ? "✅" :
-//       u.status === "atual" ? "🔥" :
-//       "🔒";
-
-//     const btnClasse =
-//       u.status === "concluido" ? "completed" :
-//       u.status === "atual" ? "continue" :
-//       "locked";
-
-//     const btnTexto =
-//       u.status === "concluido" ? "Concluído" :
-//       u.status === "atual" ? "Acessar Unidade" :
-//       "Bloqueado";
-
-//     card.innerHTML = `
-//       <div class="course-content">
-//         <span class="course-category">Unidade ${index + 1}</span>
-//         <h3 class="course-title">${icone} ${u.titulo}</h3>
-//         <p class="course-description">${u.descricao}</p>
-//         <div class="course-stats">
-//           <span>🎯 ${u.xp} XP</span>
-//         </div>
-//         <button class="course-btn ${btnClasse}"
-//           ${u.status === "liberado" || u.status === "atual" ? `onclick="window.location.href='${u.link}'"` : "disabled"}>
-//           ${btnTexto}
-//         </button>
-//       </div>
-//     `;
-
-//     grid.appendChild(card);
-//   });
-
-//   // Efeito visual simples de hover
-//   const cards = document.querySelectorAll(".course-card");
-//   cards.forEach(card => {
-//     card.addEventListener("mouseenter", () => card.classList.add("hover"));
-//     card.addEventListener("mouseleave", () => card.classList.remove("hover"));
-//   });
-// });
-
-
 document.addEventListener("DOMContentLoaded", () => {
-  // --- CONFIGURAÇÃO INICIAL DO CURSO ---
   const curso = {
     titulo: "Hardware Básico",
     descricao: "Aprenda os fundamentos do hardware: componentes, funções e montagem de computadores.",
@@ -178,12 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
   };
 
-  // --- BUSCAR PROGRESSO SALVO (LOCALSTORAGE) ---
   let progressoSalvo = JSON.parse(localStorage.getItem("progressoHardware")) || {
     concluido: [], // unidades concluídas (índices)
   };
 
-  // --- FUNÇÃO PARA ATUALIZAR E SALVAR PROGRESSO ---
   function atualizarProgresso() {
     const total = curso.unidades.length;
     const concluidas = progressoSalvo.concluido.length;
@@ -192,10 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return porcentagem;
   }
 
-  // --- CALCULAR PROGRESSO ATUAL ---
   const progresso = atualizarProgresso();
 
-  // --- ATUALIZAR CABEÇALHO DO CURSO ---
   document.title = `Curso - ${curso.titulo} | HardXP`;
   const heroSection = document.querySelector(".courses-hero, .course-hero");
   if (heroSection) {
@@ -215,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // --- CRIAR CARDS DE UNIDADES ---
   const grid = document.querySelector(".courses-grid");
   if (!grid) return;
   grid.innerHTML = "";
@@ -244,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.appendChild(card);
   });
 
-  // --- EFEITO HOVER ---
   document.querySelectorAll(".course-card").forEach(card => {
     card.addEventListener("mouseenter", () => card.classList.add("hover"));
     card.addEventListener("mouseleave", () => card.classList.remove("hover"));
@@ -252,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// --- Função global usada pelas unidades para marcar conclusão ---
 window.marcarConcluida = function(indice) {
   let progressoSalvo = JSON.parse(localStorage.getItem("progressoHardware")) || { concluido: [] };
 

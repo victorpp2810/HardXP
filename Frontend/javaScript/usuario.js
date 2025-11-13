@@ -1,4 +1,3 @@
-// javaScript/usuario.js - versão consolidada
 (() => {
   const baseUrl = window.BASE_API_URL || "http://localhost:2000";
   const userId = localStorage.getItem("id");
@@ -8,7 +7,6 @@
 
   const dbg = (...args) => console.log("[usuario.js]", ...args);
 
-  // ---------- Carregar usuário ----------
   async function carregarUsuario() {
     dbg("Iniciando carregarUsuario() - userId:", userId);
     if (!userId) {
@@ -28,7 +26,6 @@
       const user = await res.json();
       dbg("Dados do usuário recebidos:", user);
 
-      // Atualiza dados do DOM
       setTextIfExists('fullNameDisplay', user.nome || '—');
       setTextIfExists('emailDisplay', user.email || '—');
       setTextIfExists('cpfDisplay', user.cpf || '—');
@@ -36,7 +33,6 @@
       setValueIfExists('emailEdit', user.email || '');
       setValueIfExists('cpfEdit', user.cpf || '');
 
-      // Header
       document.getElementById('userName').textContent = user.nome || 'Usuário';
       setTextIfExists('userEmail', user.email || '');
 
@@ -62,7 +58,6 @@
     }
   }
 
-  // ---------- Helpers ----------
   function setTextIfExists(id, text) {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
@@ -72,7 +67,6 @@
     if (el) el.value = value;
   }
 
-  // ---------- Tabs ----------
   function showTab(tabName) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
@@ -84,7 +78,6 @@
     currentTab = tabName;
   }
 
-  // ---------- Edição ----------
   function toggleEdit(section) {
     editMode[section] = !editMode[section];
     const container = document.getElementById(section);
@@ -119,7 +112,6 @@
     if (editMode[section]) toggleEdit(section);
   }
 
-  // ---------- Salvar alterações ----------
   async function saveChanges(section) {
     if (!userId) return alert("Usuário não identificado.");
     const container = document.getElementById(section);
@@ -161,7 +153,6 @@
     }
   }
 
-  // ---------- Upload de foto ----------
   function setupAvatarUpload() {
     const fotoInput = document.getElementById("fotoInput");
     const avatarImg = document.getElementById("avatarImg");
@@ -192,7 +183,6 @@
     });
   }
 
-  // ---------- Máscaras ----------
   function attachMasks() {
     const cpfEl = document.getElementById('cpfEdit');
     if (cpfEl) cpfEl.addEventListener('input', e => {

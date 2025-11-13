@@ -11,7 +11,7 @@ body {
     padding: 0;
 }
 
-/* Estilo do botão de voltar */
+
 .btn-voltar {
     position: fixed;           /* Fica fixo na tela */
     top: 15px;                 /* Distância do topo */
