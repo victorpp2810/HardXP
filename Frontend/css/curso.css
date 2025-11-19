@@ -21,6 +21,17 @@
   opacity: 0.6;
 }
 
+.course-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+.image-wrapper { overflow: hidden; border-radius: 8px; }
+.course-card { transition: transform .15s ease, box-shadow .15s ease; }
+.course-card.hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.course-btn.locked { opacity: .6; cursor: not-allowed; }
 
 .btn-voltar {
     position: fixed;           /* Fica fixo na tela */

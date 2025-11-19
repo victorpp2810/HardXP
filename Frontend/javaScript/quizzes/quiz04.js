@@ -54,21 +54,33 @@ const questions = [
   }
 ];
 
+const unidadeAtual = 4;      // 👈 Mude aqui para a unidade atual
+const proximaUnidade = 5;    // 👈 Mude aqui para a próxima unidade
+
+// -----------------------------------------
+// SISTEMA DE PONTUAÇÃO
+// -----------------------------------------
 let current = 0;
 let score = 0;
 let attempt = 0;
 const pointsPerAttempt = [1000, 700, 400, 100];
-let answered = false;
 
+// -----------------------------------------
+// ELEMENTOS DA TELA
+// -----------------------------------------
 const questionText = document.getElementById("questionText");
 const optionsBox = document.getElementById("optionsBox");
-const scoreBoard = document.getElementById("scoreBoard");
 const nextBtn = document.getElementById("nextBtn");
+const scoreBoard = document.getElementById("scoreBoard");
 
+// -----------------------------------------
+// CARREGAR PERGUNTA
+// -----------------------------------------
 function loadQuestion() {
   const q = questions[current];
   attempt = 0;
-  answered = false;
+  nextBtn.disabled = true;
+
   questionText.textContent = `${current + 1}. ${q.question}`;
   optionsBox.innerHTML = "";
 
@@ -79,62 +91,94 @@ function loadQuestion() {
     div.onclick = () => checkAnswer(i, div);
     optionsBox.appendChild(div);
   });
-
-  nextBtn.disabled = true;
 }
 
+// -----------------------------------------
+// VERIFICAR RESPOSTA
+// -----------------------------------------
 function checkAnswer(index, div) {
-  if (answered) return;
-
   const q = questions[current];
-  const options = document.querySelectorAll(".option");
+  const options = optionsBox.querySelectorAll(".option");
+
+  options.forEach(o => o.style.pointerEvents = "none");
   attempt++;
 
   if (index === q.correct) {
     div.classList.add("correct");
+
     const earned = pointsPerAttempt[Math.min(attempt - 1, 3)];
     score += earned;
     scoreBoard.textContent = `Pontuação: ${score}`;
-    answered = true;
+
     nextBtn.disabled = false;
   } else {
     div.classList.add("wrong");
-  }
 
-  options.forEach(o => (o.style.pointerEvents = answered ? "none" : "auto"));
+    if (attempt < pointsPerAttempt.length) {
+      options.forEach(o => o.style.pointerEvents = "auto");
+      div.style.pointerEvents = "none";
+    }
+  }
 }
 
-nextBtn.addEventListener("click", () => {
-  if (!answered) return;
+// -----------------------------------------
+// BOTÃO PRÓXIMA PERGUNTA
+// -----------------------------------------
+nextBtn.onclick = () => {
+  current++;
 
-  if (current < questions.length - 1) {
-    current++;
+  if (current < questions.length) {
     loadQuestion();
   } else {
-    // Fim do quiz
-    localStorage.setItem("quiz04Score", score);
-    if (typeof marcarConcluida === "function") {
-      marcarConcluida(3);
-    }
-    fetch("http://localhost:2000/progresso", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        usuarioId: localStorage.getItem("id"),
-        unidade: 4 // unidade do quiz01
-      })
-    })
-    .then(() => console.log("Progresso da unidade 4 salvo com sucesso"))
-    .catch((err) => console.error("Erro ao salvar progresso:", err));
-
-    // 🔹 MENSAGEM FINAL
-    questionText.textContent = `Você concluiu o quiz da Unidade 4!`;
-    optionsBox.innerHTML = "";
-    nextBtn.remove();
-    setTimeout(() => {
-      window.location.href = "../unidades/unidade05.html";
-    }, 2500);
+    finalizarQuiz();
   }
-});
+};
 
-document.addEventListener("DOMContentLoaded", loadQuestion);
+// -----------------------------------------
+// FINALIZAR QUIZ
+// -----------------------------------------
+function finalizarQuiz() {
+  const usuarioId = localStorage.getItem("id");
+
+  // SALVAR XP DO QUIZ
+  fetch(`http://localhost:2000/usuario/${usuarioId}/adicionarXP`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ xp: score })
+  })
+    .then(r => r.json())
+    .then(d => console.log("XP atualizado:", d))
+    .catch(err => console.error("Erro ao enviar XP:", err));
+
+  // SALVAR PROGRESSO DA UNIDADE
+  fetch("http://localhost:2000/progresso", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      usuarioId,
+      unidade: unidadeAtual
+    })
+  })
+    .then(() => console.log(`Progresso da unidade ${unidadeAtual} salvo`))
+    .catch(err => console.error("Erro ao salvar progresso:", err));
+
+  // MARCAR COMO CONCLUÍDA VISUALMENTE (curso.js)
+  if (typeof marcarConcluida === "function") {
+    marcarConcluida(unidadeAtual - 1);
+  }
+
+  // FIM DO QUIZ
+  questionText.textContent = `Você concluiu o quiz da Unidade ${unidadeAtual}!`;
+  optionsBox.innerHTML = "";
+  nextBtn.remove();
+
+  // REDIRECIONAR PARA A PRÓXIMA UNIDADE
+  setTimeout(() => {
+    window.location.href = `../unidades/unidade0${proximaUnidade}.html`;
+  }, 2500);
+}
+
+// -----------------------------------------
+// INICIAR QUIZ
+// -----------------------------------------
+loadQuestion();

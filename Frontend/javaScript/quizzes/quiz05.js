@@ -96,20 +96,33 @@ const questions = [
   }
 ];
 
+const unidadeAtual = 5;      // 👈 Mude aqui para a unidade atual
+const proximaUnidade = 6;    // 👈 Mude aqui para a próxima unidade
+
+// -----------------------------------------
+// SISTEMA DE PONTUAÇÃO
+// -----------------------------------------
 let current = 0;
 let score = 0;
 let attempt = 0;
 const pointsPerAttempt = [1000, 700, 400, 100];
 
+// -----------------------------------------
+// ELEMENTOS DA TELA
+// -----------------------------------------
 const questionText = document.getElementById("questionText");
 const optionsBox = document.getElementById("optionsBox");
 const nextBtn = document.getElementById("nextBtn");
 const scoreBoard = document.getElementById("scoreBoard");
 
+// -----------------------------------------
+// CARREGAR PERGUNTA
+// -----------------------------------------
 function loadQuestion() {
   const q = questions[current];
   attempt = 0;
   nextBtn.disabled = true;
+
   questionText.textContent = `${current + 1}. ${q.question}`;
   optionsBox.innerHTML = "";
 
@@ -122,60 +135,92 @@ function loadQuestion() {
   });
 }
 
+// -----------------------------------------
+// VERIFICAR RESPOSTA
+// -----------------------------------------
 function checkAnswer(index, div) {
   const q = questions[current];
   const options = optionsBox.querySelectorAll(".option");
+
   options.forEach(o => o.style.pointerEvents = "none");
   attempt++;
 
   if (index === q.correct) {
     div.classList.add("correct");
+
     const earned = pointsPerAttempt[Math.min(attempt - 1, 3)];
     score += earned;
     scoreBoard.textContent = `Pontuação: ${score}`;
+
     nextBtn.disabled = false;
   } else {
     div.classList.add("wrong");
+
     if (attempt < pointsPerAttempt.length) {
-      // permite nova tentativa
       options.forEach(o => o.style.pointerEvents = "auto");
       div.style.pointerEvents = "none";
     }
   }
 }
 
+// -----------------------------------------
+// BOTÃO PRÓXIMA PERGUNTA
+// -----------------------------------------
 nextBtn.onclick = () => {
   current++;
+
   if (current < questions.length) {
     loadQuestion();
   } else {
-    localStorage.setItem("quiz05Score", score);
-    if (typeof marcarConcluida === "function") {
-      marcarConcluida(4);
-    }
-    questionText.textContent = `Excelente! Você concluiu o Quiz da Unidade 5.`;
-    optionsBox.innerHTML = "";
-    nextBtn.remove();
-     fetch("http://localhost:2000/progresso", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        usuarioId: localStorage.getItem("id"),
-        unidade: 5 // unidade do quiz01
-      })
-    })
-    .then(() => console.log("Progresso da unidade 5 salvo com sucesso"))
-    .catch((err) => console.error("Erro ao salvar progresso:", err));
-
-    // 🔹 MENSAGEM FINAL
-    questionText.textContent = `Você concluiu o quiz da Unidade 5!`;
-    optionsBox.innerHTML = "";
-    nextBtn.remove();
-
-    setTimeout(() => {
-      window.location.href = "../unidades/unidade06.html";
-    }, 3000);
+    finalizarQuiz();
   }
 };
 
+// -----------------------------------------
+// FINALIZAR QUIZ
+// -----------------------------------------
+function finalizarQuiz() {
+  const usuarioId = localStorage.getItem("id");
+
+  // SALVAR XP DO QUIZ
+  fetch(`http://localhost:2000/usuario/${usuarioId}/adicionarXP`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ xp: score })
+  })
+    .then(r => r.json())
+    .then(d => console.log("XP atualizado:", d))
+    .catch(err => console.error("Erro ao enviar XP:", err));
+
+  // SALVAR PROGRESSO DA UNIDADE
+  fetch("http://localhost:2000/progresso", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      usuarioId,
+      unidade: unidadeAtual
+    })
+  })
+    .then(() => console.log(`Progresso da unidade ${unidadeAtual} salvo`))
+    .catch(err => console.error("Erro ao salvar progresso:", err));
+
+  // MARCAR COMO CONCLUÍDA VISUALMENTE (curso.js)
+  if (typeof marcarConcluida === "function") {
+    marcarConcluida(unidadeAtual - 1);
+  }
+
+  // FIM DO QUIZ
+  questionText.textContent = `Você concluiu o quiz da Unidade ${unidadeAtual}!`;
+  optionsBox.innerHTML = "";
+  nextBtn.remove();
+
+  // REDIRECIONAR PARA A PRÓXIMA UNIDADE
+  setTimeout(() => {
+    window.location.href = `../unidades/unidade0${proximaUnidade}.html`;
+  }, 2500);
+}
+
+// -----------------------------------------
+// INICIAR QUIZ
+// -----------------------------------------
 loadQuestion();

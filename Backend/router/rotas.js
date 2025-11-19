@@ -133,11 +133,11 @@ rotas.get("/:id/usuario", (req, res) => {
 
 rotas.put("/:id/usuario", (req, res) => {
   const { id } = req.params;
-  const { nome, email, cpf, telefone } = req.body;
+  const { nome, email, cpf} = req.body;
 
   db.run(
-    `UPDATE Usuario SET nome = ?, email = ?, cpf = ?, telefone = ? WHERE id = ?`,
-    [nome, email, cpf, telefone, id],
+    `UPDATE Usuario SET nome = ?, email = ?, cpf = ? WHERE idUsuario = ?`,
+    [nome, email, cpf, id],
     function (err) {
       if (err) {
         console.error(err);
@@ -195,7 +195,7 @@ rotas.post("/progresso", (req, res) => {
   }
 
   db.run(
-    `INSERT OR REPLACE INTO progresso (usuarioId, unidade, quizConcluido)
+    `INSERT OR REPLACE INTO progresso (usuario_id, unidade, quiz_concluido)
      VALUES (?, ?, 1)`,
     [usuarioId, unidade],
     (err) => {
@@ -203,32 +203,156 @@ rotas.post("/progresso", (req, res) => {
         console.error("Erro ao salvar progresso:", err);
         return res.status(500).json({ message: "Erro ao salvar progresso." });
       }
-      res.json({ message: "Progresso salvo com sucesso!" });
+      res.json({ success: true });
     }
   );
 });
 
-rotas.get("/progresso/:usuarioId/:unidade", (req, res) => {
-  const { usuarioId, unidade } = req.params;
 
-  if (unidade == 1) {
-    return res.json({ acesso: true }); // unidade 1 sempre liberada
+
+rotas.get("/progresso/:usuarioId/:unidade", (req, res) => {
+  const usuarioId = Number(req.params.usuarioId);
+  const unidade = Number(req.params.unidade);
+
+  // Unidade 1 sempre liberada
+  if (unidade === 1) {
+    return res.json({ acesso: true });
   }
 
   db.get(
-    `SELECT quizConcluido FROM progresso WHERE usuarioId = ? AND unidade = ?`,
+    `SELECT quiz_concluido FROM progresso
+     WHERE usuario_id = ? AND unidade = ?`,
     [usuarioId, unidade - 1],
     (err, row) => {
-      if (err) return res.status(500).json({ message: "Erro ao verificar progresso." });
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Erro ao verificar progresso." });
+      }
 
-      if (row && row.quizConcluido) {
-        res.json({ acesso: true });
+      if (row && row.quiz_concluido === 1) {
+        return res.json({ acesso: true });
       } else {
-        res.json({ acesso: false });
+        return res.json({ acesso: false });
       }
     }
   );
 });
+
+
+
+// 🔹 Incrementar XP do usuário
+rotas.post("/usuario/:id/adicionarXP", (req, res) => {
+  const { id } = req.params;
+  const { xp } = req.body;
+
+  if (xp == null || xp < 0) {
+    return res.status(400).json({ message: "XP inválido." });
+  }
+
+  db.run(
+    `UPDATE Usuario 
+     SET pontuacao = COALESCE(pontuacao, 0) + ?
+     WHERE idUsuario = ?`,
+    [xp, id],
+    function (err) {
+      if (err) {
+        console.error("Erro ao atualizar XP:", err);
+        return res.status(500).json({ message: "Erro ao atualizar XP." });
+      }
+
+      res.json({ success: true, xpGanho: xp });
+    }
+  );
+});
+
+// rota única e robusta para stats
+rotas.get("/usuario/:id/stats", (req, res) => {
+  const id = Number(req.params.id);
+  if (!id) return res.status(400).json({ message: "ID inválido" });
+
+  const stats = {
+    pontuacao: 0,
+    quizzes: 0,
+    etapas: 0,
+    porcentagem: 0,
+    ultimaAtividade: null,
+    ranking: null
+  };
+
+  // 1) Pontuação
+  db.get(`SELECT COALESCE(pontuacao,0) AS pontuacao FROM Usuario WHERE idUsuario = ?`, [id], (err, row) => {
+    if (err) {
+      console.error("stats: erro pontuacao:", err);
+      return res.status(500).json({ message: "Erro ao buscar pontuação", detail: err.message });
+    }
+    stats.pontuacao = row ? Number(row.pontuacao) : 0;
+
+    // 2) Quizzes concluídos (total)
+    db.get(
+      `SELECT COUNT(*) AS totalQuizzes FROM progresso WHERE usuario_id = ? AND quiz_concluido = 1`,
+      [id],
+      (err2, r2) => {
+        if (err2) {
+          console.error("stats: erro totalQuizzes:", err2);
+          return res.status(500).json({ message: "Erro ao contar quizzes", detail: err2.message });
+        }
+        stats.quizzes = r2 ? Number(r2.totalQuizzes) : 0;
+
+        // 3) Unidades concluídas (distintas)
+        db.get(
+          `SELECT COUNT(DISTINCT unidade) AS totalEtapas FROM progresso WHERE usuario_id = ? AND quiz_concluido = 1`,
+          [id],
+          (err3, r3) => {
+            if (err3) {
+              console.error("stats: erro totalEtapas:", err3);
+              return res.status(500).json({ message: "Erro ao contar etapas", detail: err3.message });
+            }
+            stats.etapas = r3 ? Number(r3.totalEtapas) : 0;
+
+            // 4) ultima atividade (mais recente)
+            db.get(
+              `SELECT unidade, id, quiz_concluido FROM progresso WHERE usuario_id = ? AND quiz_concluido = 1 ORDER BY id DESC LIMIT 1`,
+              [id],
+              (err4, r4) => {
+                if (err4) {
+                  console.error("stats: erro ultimaAtividade:", err4);
+                  return res.status(500).json({ message: "Erro ao buscar última atividade", detail: err4.message });
+                }
+                stats.ultimaAtividade = r4 ? r4.unidade : null;
+
+                // 5) ranking (posição baseado em pontuacao)
+                db.all(
+                  `SELECT idUsuario, COALESCE(pontuacao,0) AS pontuacao FROM Usuario ORDER BY pontuacao DESC`,
+                  [],
+                  (err5, rows) => {
+                    if (err5) {
+                      console.error("stats: erro ranking:", err5);
+                      return res.status(500).json({ message: "Erro ao calcular ranking", detail: err5.message });
+                    }
+
+                    const pos = Array.isArray(rows) ? rows.findIndex(r => Number(r.idUsuario) === Number(id)) : -1;
+                    stats.ranking = pos === -1 ? null : pos + 1;
+
+                    // 6) porcentagem: cuidado — precisa do total de unidades da plataforma
+                    //  Ajuste TOTAL_UNIDADES conforme seu conteúdo real
+                    const TOTAL_UNIDADES = 10;
+                    stats.porcentagem = TOTAL_UNIDADES > 0 ? Math.round((stats.etapas / TOTAL_UNIDADES) * 100) : 0;
+
+                    // tudo OK: retornar stats
+                    return res.json(stats);
+                  }
+                ); // db.all ranking
+              }
+            ); // db.get ultimaAtividade
+          }
+        ); // db.get totalEtapas
+      }
+    ); // db.get totalQuizzes
+  }); // db.get pontuacao
+});
+
+
+
 
 
 export default rotas;

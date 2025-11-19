@@ -101,20 +101,36 @@ const questions = [
   }
 ];
 
+// -----------------------------------------
+// CONFIGURAÇÕES DO QUIZ (UNIDADE 11)
+// -----------------------------------------
+const unidadeAtual = 11;
+const proximaUnidade = null; // 👈 não existe unidade 12
+
+// -----------------------------------------
+// SISTEMA DE PONTUAÇÃO
+// -----------------------------------------
 let current = 0;
 let score = 0;
 let attempt = 0;
 const pointsPerAttempt = [1000, 700, 400, 100];
 
+// -----------------------------------------
+// ELEMENTOS DA TELA
+// -----------------------------------------
 const questionText = document.getElementById("questionText");
 const optionsBox = document.getElementById("optionsBox");
 const nextBtn = document.getElementById("nextBtn");
 const scoreBoard = document.getElementById("scoreBoard");
 
+// -----------------------------------------
+// CARREGAR PERGUNTA
+// -----------------------------------------
 function loadQuestion() {
   const q = questions[current];
   attempt = 0;
   nextBtn.disabled = true;
+
   questionText.textContent = `${current + 1}. ${q.question}`;
   optionsBox.innerHTML = "";
 
@@ -127,20 +143,27 @@ function loadQuestion() {
   });
 }
 
+// -----------------------------------------
+// VERIFICAR RESPOSTA
+// -----------------------------------------
 function checkAnswer(index, div) {
   const q = questions[current];
   const options = optionsBox.querySelectorAll(".option");
+
   options.forEach(o => o.style.pointerEvents = "none");
   attempt++;
 
   if (index === q.correct) {
     div.classList.add("correct");
+
     const earned = pointsPerAttempt[Math.min(attempt - 1, 3)];
     score += earned;
     scoreBoard.textContent = `Pontuação: ${score}`;
+
     nextBtn.disabled = false;
   } else {
     div.classList.add("wrong");
+
     if (attempt < pointsPerAttempt.length) {
       options.forEach(o => o.style.pointerEvents = "auto");
       div.style.pointerEvents = "none";
@@ -148,38 +171,65 @@ function checkAnswer(index, div) {
   }
 }
 
+// -----------------------------------------
+// BOTÃO PRÓXIMA
+// -----------------------------------------
 nextBtn.onclick = () => {
   current++;
+
   if (current < questions.length) {
     loadQuestion();
   } else {
-    localStorage.setItem("quiz11Score", score);
-    if (typeof marcarConcluida === "function") {
-      marcarConcluida(10);
-    }
-    questionText.textContent = `Parabéns! Você concluiu o último quiz do curso de Hardware!`;
-    optionsBox.innerHTML = "";
-    nextBtn.remove();
-     fetch("http://localhost:2000/progresso", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        usuarioId: localStorage.getItem("id"),
-        unidade: 11 // unidade do quiz01
-      })
-    })
-    .then(() => console.log("Progresso da unidade 11 salvo com sucesso"))
-    .catch((err) => console.error("Erro ao salvar progresso:", err));
-
-    // 🔹 MENSAGEM FINAL
-    questionText.textContent = `Você concluiu o quiz da Unidade 11!`;
-    optionsBox.innerHTML = "";
-    nextBtn.remove();
-
-    setTimeout(() => {
-      window.location.href = "../curso.html";
-    }, 3500);
+    finalizarQuiz();
   }
 };
 
+// -----------------------------------------
+// FINALIZAR QUIZ DA UNIDADE 11
+// -----------------------------------------
+function finalizarQuiz() {
+  const usuarioId = localStorage.getItem("id");
+
+  // SALVAR XP
+  fetch(`http://localhost:2000/usuario/${usuarioId}/adicionarXP`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ xp: score })
+  });
+
+  // SALVAR PROGRESSO FINAL
+  fetch("http://localhost:2000/progresso", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      usuarioId,
+      unidade: unidadeAtual
+    })
+  });
+
+  // MARCAR VISUALMENTE COMO CONCLUÍDA (curso.js)
+  if (typeof marcarConcluida === "function") {
+    marcarConcluida(unidadeAtual - 1);
+  }
+
+  // TELA FINAL
+  questionText.textContent = `🎉 Parabéns! Você concluiu **todo o curso**!`;
+  optionsBox.innerHTML = "";
+  nextBtn.remove();
+
+  // --------------------------------------
+  // AQUI VOCÊ ESCOLHE O QUE QUER FAZER:
+  // --------------------------------------
+
+  // OPÇÃO 1 → voltar para a página do curso
+  setTimeout(() => {
+    window.location.href = "../curso.html";
+  }, 3000);
+
+  // ➤ Se quiser liberar certificado, é só pedir que eu adiciono.
+}
+
+// -----------------------------------------
+// INICIAR QUIZ
+// -----------------------------------------
 loadQuestion();

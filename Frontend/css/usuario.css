@@ -370,54 +370,76 @@ body {
     transform: translateY(-2px);
 }
 
+/* GRID de estatísticas — já existe, mas reforço */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
+    margin-top: 20px;
 }
 
+/* Cada card de estatística */
 .stat-card {
-    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    background: linear-gradient(135deg, #ffffff, #f9fafb);
     border: 2px solid #e9ecef;
-    border-radius: 16px;
-    padding: 30px;
+    border-radius: 18px;
+    padding: 28px;
     display: flex;
     align-items: center;
     gap: 20px;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
+    transform: translateY(-4px);
     border-color: #667eea;
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
 }
 
+/* Ícone das estatísticas */
 .stat-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 22px;
     color: white;
-    font-size: 24px;
     flex-shrink: 0;
 }
 
+/* Título de cada estatística */
 .stat-info h3 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    color: #555;
-    margin-bottom: 8px;
+    color: #333;
+    margin-bottom: 6px;
 }
 
+/* Valor principal */
 .stat-value {
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 800;
     color: #667eea;
+}
+
+/* Para porcentagem */
+.stat-value.percent {
+    color: #10b981; /* verde bonito */
+}
+
+/* Para ranking */
+.stat-value.rank {
+    color: #f59e0b; /* dourado */
+}
+
+/* Para última atividade */
+.stat-value.last {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6b7280;
 }
 
 .security-section {
@@ -696,4 +718,63 @@ body {
 .badge-overlay p {
     font-size: 13px;
     line-height: 1.4;
+}
+
+/* ----- INSÍGNIAS ----- */
+.badge-current {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.badge-big {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.badge-progress {
+    margin: 25px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    background: #ddd;
+    height: 12px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(45deg, #5b9df9, #4ad1ff);
+    transition: 0.7s;
+}
+
+.badge-list-title {
+    margin-top: 30px;
+}
+
+.badges-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.badge-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f5f5f5;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 17px;
+    align-items: center;
+}
+
+.badge-icon {
+    font-size: 28px;
+}
+
+.badge-name {
+    font-weight: 600;
 }

@@ -16,7 +16,7 @@ async function carregarRanking() {
       tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;">Nenhum dado disponível</td></tr>`;
       return;
     }
-
+    console.log(data);
     data.forEach((user, i) => {
       let medalha = "";
       if (i === 0) medalha = "🥇";

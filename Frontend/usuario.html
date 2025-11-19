@@ -103,49 +103,49 @@
                     </div>
                     
                     <div class="stats-grid">
+
                         <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
+                            <div class="stat-icon">📘</div>
                             <div class="stat-info">
                                 <h3>Etapas Concluídas</h3>
-                                <span class="stat-value">00</span>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-question-circle"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>Quizzes Realizados</h3>
-                                <span class="stat-value">00</span>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>Posição no Ranking</h3>
-                                <span class="stat-value">257</span>
+                                <div class="stat-value" id="statEtapas">0</div>
                             </div>
                         </div>
 
-                        
                         <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-star"></i>
-                            </div>
+                            <div class="stat-icon">⭐</div>
                             <div class="stat-info">
                                 <h3>Pontuação Total</h3>
-                                <span class="stat-value">0.000</span>
+                                <div class="stat-value" id="statPontuacao">0</div>
                             </div>
                         </div>
-                        
+
+                        <div class="stat-card">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-info">
+                                <h3>Ranking</h3>
+                                <div class="stat-value rank" id="statRanking">-</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-info">
+                                <h3>Progresso</h3>
+                                <div class="stat-value percent" id="statPorcentagem">0%</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-info">
+                                <h3>Última Atividade</h3>
+                                <div class="stat-value last" id="statUltima">-</div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+</div>
 
                 <!-- Segurança -->
                 <div id="security" class="tab-pane">
@@ -183,32 +183,54 @@
                         <h2>Suas Insígnias</h2>
                     </div>
 
-                    <div class="badges-grid">
-                        <div class="badge-card">
-                            <img src="./images/insignia1.png" alt="Insígnia 1">
-                            <div class="badge-overlay">
-                                <h3>Primeiro Acesso</h3>
-                                <p>Conquistada ao entrar pela primeira vez na plataforma.</p>
-                            </div>
+                    <div class="badge-current">
+                        <h3>Insígnia Atual</h3>
+                        <div id="currentBadge" class="badge-big">🌱 Iniciante</div>
+                    </div>
+
+                    <div class="badge-progress">
+                        <h3>Progresso para a Próxima Insígnia</h3>
+                        <div class="progress-bar">
+                            <div id="badgeProgressBar" class="progress-fill"></div>
+                        </div>
+                        <p id="badgeProgressText">Faltam 10000 pontos para a próxima insígnia!</p>
+                    </div>
+
+                    <h3 class="badge-list-title">Todas as Insígnias</h3>
+
+                    <div class="badges-list">
+                        <div class="badge-item">
+                            <span class="badge-icon">🌱</span>
+                            <span class="badge-name">Iniciante</span>
+                            <span class="badge-require">0+ pontos</span>
                         </div>
 
-                        <div class="badge-card">
-                            <img src="./images/insignia2.png" alt="Insígnia 2">
-                            <div class="badge-overlay">
-                                <h3>Top 10 Ranking</h3>
-                                <p>Alcançou o top 10 dos melhores jogadores.</p>
-                            </div>
+                        <div class="badge-item">
+                            <span class="badge-icon">⭐</span>
+                            <span class="badge-name">Intermediário</span>
+                            <span class="badge-require">10000+ pontos</span>
                         </div>
 
-                        <div class="badge-card">
-                            <img src="./images/insignia3.png" alt="Insígnia 3">
-                            <div class="badge-overlay">
-                                <h3>Aprendiz Dedicado</h3>
-                                <p>Completou todos os quizzes de uma etapa.</p>
-                            </div>
+                        <div class="badge-item">
+                            <span class="badge-icon">🔥</span>
+                            <span class="badge-name">Avançado</span>
+                            <span class="badge-require">30000+ pontos</span>
+                        </div>
+
+                        <div class="badge-item">
+                            <span class="badge-icon">🦾</span>
+                            <span class="badge-name">Especialista</span>
+                            <span class="badge-require">60000+ pontos</span>
+                        </div>
+
+                        <div class="badge-item">
+                            <span class="badge-icon">🧙‍♂️✨</span>
+                            <span class="badge-name">Lendário</span>
+                            <span class="badge-require">100000+ pontos</span>
                         </div>
                     </div>
                 </div>
+
 
 
             </div>

@@ -57,6 +57,28 @@
       alert("Erro ao carregar dados do usuário.");
     }
   }
+  
+async function carregarStats(id) {
+  const res = await fetch(`${baseUrl}/usuario/${id}/stats`);
+  const stats = await res.json();
+
+  window.userStats = stats;
+
+  document.querySelector("#statEtapas").innerText = stats.etapas;
+  document.querySelector("#statPontuacao").innerText = stats.pontuacao;
+  document.querySelector("#statRanking").innerText = stats.ranking || "-";
+  document.querySelector("#statPorcentagem").innerText = stats.porcentagem + "%";
+
+  document.querySelector("#statUltima").innerText =
+    stats.ultimaAtividade
+      ? `Unidade ${stats.ultimaAtividade}`
+      : "Nenhuma atividade ainda";
+
+  updateBadges(stats.pontuacao);
+}
+
+
+
 
   function setTextIfExists(id, text) {
     const el = document.getElementById(id);
@@ -112,46 +134,135 @@
     if (editMode[section]) toggleEdit(section);
   }
 
-  async function saveChanges(section) {
-    if (!userId) return alert("Usuário não identificado.");
-    const container = document.getElementById(section);
-    if (!container) return alert("Seção não encontrada.");
+function validateUserData(nome, email, cpf) {
+  if (!nome.trim()) return "O nome não pode estar vazio.";
+  if (!email.includes("@") || !email.includes(".")) return "Email inválido.";
+  if (!cpf.trim()) return "CPF obrigatório.";
+  return null;
+}
 
-    const nome = container.querySelector('#fullNameEdit')?.value || '';
-    const email = container.querySelector('#emailEdit')?.value || '';
-    const cpf = container.querySelector('#cpfEdit')?.value || '';
+function updateLocalFields(user) {
+  setTextIfExists("fullNameDisplay", user.nome);
+  setTextIfExists("emailDisplay", user.email);
+  setTextIfExists("cpfDisplay", user.cpf);
 
-    if (!nome) return alert("Nome obrigatório.");
-    if (!email || !email.includes('@')) return alert("Email inválido.");
-    if (!cpf) return alert("CPF obrigatório.");
+  // Atualizar header
+  const firstName = user.nome.split(" ")[0];
+  document.getElementById("userName").textContent = firstName;
+  setTextIfExists("userEmail", user.email);
+}
 
-    const payload = { nome, email, cpf };
+async function saveChanges(section) {
+  dbg("saveChanges() iniciada — seção:", section);
 
-    try {
-      const res = await fetch(`${baseUrl}/${userId}/usuario`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        credentials: 'include'
-      });
-
-      if (!res.ok) throw new Error("Falha ao salvar dados.");
-
-      setTextIfExists('fullNameDisplay', nome);
-      setTextIfExists('emailDisplay', email);
-      setTextIfExists('cpfDisplay', cpf);
-
-      const headerName = document.getElementById('userName');
-      if (headerName) headerName.textContent = nome.split(' ').slice(0,2).join(' ');
-      setTextIfExists('userEmail', email);
-
-      alert("Dados atualizados com sucesso!");
-      if (editMode[section]) toggleEdit(section);
-    } catch (err) {
-      console.error("Erro ao salvar alterações:", err);
-      alert("Erro ao salvar alterações.");
-    }
+  if (!userId) {
+    alert("Usuário não identificado.");
+    return;
   }
+
+  const container = document.getElementById(section);
+  if (!container) {
+    alert("Erro interno: seção não encontrada.");
+    return;
+  }
+
+  // Pega os dados dos inputs
+  const nome = document.getElementById("fullNameEdit")?.value || '';
+  const email = document.getElementById("emailEdit")?.value || '';
+  const cpf = document.getElementById("cpfEdit")?.value || '';
+
+  // Validação
+  const error = validateUserData(nome, email, cpf);
+  if (error) {
+    alert(error);
+    return;
+  }
+
+  const payload = { nome, email, cpf };
+
+  dbg("Enviando PUT com payload:", payload);
+
+  try {
+    const res = await fetch(`${baseUrl}/${userId}/usuario`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      credentials: "include"
+    });
+
+    dbg("Resposta do PUT:", res.status);
+
+    if (!res.ok) {
+      const txt = await res.text();
+      console.error("Erro recebido do servidor:", txt);
+      throw new Error("Falha ao atualizar os dados.");
+    }
+
+    // Atualiza a interface
+    updateLocalFields(payload);
+
+    alert("Dados atualizados com sucesso!");
+
+    // 🔥 INSÍGNIAS — atualiza automaticamente
+    if (window.userStats && userStats.pontuacao != null) {
+      const badge = calculateBadge(userStats.pontuacao);
+      updateBadgeUI(badge);
+    }
+
+    toggleEdit(section);
+    dbg("saveChanges() finalizada com sucesso.");
+
+  } catch (err) {
+    console.error("Erro em saveChanges():", err);
+    alert("Erro ao salvar alterações.");
+  }
+}
+
+
+function calculateBadge(score) {
+    if (score >= 100000) return "🧙‍♂️✨ Lendário";
+    if (score >= 60000) return "🦾 Especialista";
+    if (score >= 30000) return "🔥 Avançado";
+    if (score >= 10000) return "⭐ Intermediário";
+    return "🌱 Iniciante";
+}
+
+function getNextBadgeInfo(score) {
+    if (score >= 100000) return { next: null, missing: 0 };
+    if (score >= 60000) return { next: "🧙‍♂️✨ Lendário", missing: 100000 - score };
+    if (score >= 30000) return { next: "🦾 Especialista", missing: 60000 - score };
+    if (score >= 10000) return { next: "🔥 Avançado", missing: 30000 - score };
+    return { next: "⭐ Intermediário", missing: 1000 - score };
+}
+
+function updateBadges(score) {
+    const badge = calculateBadge(score);
+    document.getElementById("currentBadge").textContent = badge;
+
+    const { next, missing } = getNextBadgeInfo(score);
+
+    const progressBar = document.getElementById("badgeProgressBar");
+    const progressText = document.getElementById("badgeProgressText");
+
+    if (!next) {
+        progressBar.style.width = "100%";
+        progressText.textContent = "Você alcançou a maior insígnia!";
+        return;
+    }
+
+    let max;
+    if (missing <= 10000) max = 10000;
+    else if (missing <= 30000) max = 30000;
+    else max = 60000;
+
+    const progress = ((max - missing) / max) * 100;
+
+    progressBar.style.width = progress + "%";
+    progressText.textContent = `Faltam ${missing} pontos para a próxima insígnia (${next})`;
+}
+
+
+
 
   function setupAvatarUpload() {
     const fotoInput = document.getElementById("fotoInput");
@@ -232,11 +343,12 @@ window.deleteAccount = deleteAccount;
   window.goBack = () => window.history.back();
 
   // ---------- Inicialização ----------
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     attachMasks();
     showTab(currentTab);
     carregarUsuario();
+    carregarStats(userId);   // <-- ISSO AQUI PRECISA EXISTIR
     setupAvatarUpload();
     dbg("usuario.js inicializado.");
-  });
+});
 })();
