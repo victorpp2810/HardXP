@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Erro ao carregar imagem:", err);
     // você pode colocar um avatar padrão aqui se quiser:
     const photoEl = document.getElementById("userPhoto");
-    if (photoEl) photoEl.src = "./img/avatar/default.png";
+    if (photoEl) photoEl.src = "./images/user.png";
   }
 
   // profile button

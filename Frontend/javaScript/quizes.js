@@ -8,19 +8,53 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const quizzes = [
-    { titulo: "Componentes Básicos do PC", unidade: 1, perguntas: 10, xp: 10000, imagem: "../Frontend/images/quizzes/hardware-basico.jpg", link: "./quizzes/quiz01.html" },
-    { titulo: "Placa-Mãe e Conectores", unidade: 2, perguntas: 12, xp: 10000, imagem: "../Frontend/images/quizzes/placa-mae.jpg", link: "./quizzes/quiz02.html" },
-    { titulo: "Memórias e Armazenamento", unidade: 3, perguntas: 10, xp: 10000, imagem: "../Frontend/images/quizzes/memoria.jpg", link: "./quizzes/quiz03.html" },
-    { titulo: "Fontes e Energia", unidade: 4, perguntas: 8, xp: 10000, imagem: "../Frontend/images/quizzes/fonte.jpg", link: "./quizzes/quiz04.html" },
-    { titulo: "Processadores e Threads", unidade: 5, perguntas: 15, xp: 10000, imagem: "../Frontend/images/quizzes/processadores.jpg", link: "./quizzes/quiz05.html" },
-    { titulo: "Montagem do PC", unidade: 6, perguntas: 10, xp: 10000, imagem: "../Frontend/images/quizzes/montagem.jpg", link: "./quizzes/quiz06.html" },
-    { titulo: "BIOS e Configuração Inicial", unidade: 7, perguntas: 10, xp: 10000, imagem: "../Frontend/images/quizzes/bios.jpg", link: "./quizzes/quiz07.html" },
-    { titulo: "Manutenção e Diagnóstico", unidade: 8, perguntas: 12, xp: 10000, imagem: "../Frontend/images/quizzes/manutencao.jpg", link: "./quizzes/quiz08.html" },
-    { titulo: "Segurança de Hardware", unidade: 9, perguntas: 15, xp: 10000, imagem: "../Frontend/images/quizzes/seguranca.jpg", link: "./quizzes/quiz09.html" },
-    { titulo: "Periféricos e Interfaces", unidade: 10, perguntas: 8, xp: 10000, imagem: "../Frontend/images/quizzes/perifericos.jpg", link: "./quizzes/quiz10.html" },
-    { titulo: "Refrigeração e Desempenho", unidade: 11, perguntas: 10, xp: 10000, imagem: "../Frontend/images/quizzes/refrigeracao.jpg", link: "./quizzes/quiz11.html" }
-  ];
+  { titulo: "Introdução ao Hardware", unidade: 1, perguntas: 10, xp: 10000,
+    imagem: "https://www.remessaonline.com.br/blog/wp-content/uploads/2023/10/hardware.jpg",
+    link: "./quizzes/quiz01.html" },
 
+  { titulo: "Placa-Mãe e Chipset", unidade: 2, perguntas: 10, xp: 10000,
+    imagem: "https://www.intel.com.br/content/dam/www/central-libraries/us/en/images/s2-a9-1-anatomy-of-motherboard-rwd.png.rendition.intel.web.864.486.png",
+    link: "./quizzes/quiz02.html" },
+
+  { titulo: "Memórias RAM e ROM", unidade: 3, perguntas: 10, xp: 10000,
+    imagem: "https://static.wixstatic.com/media/6b39c8_68af5c66d0cf4e35a0adac8bece492c6~mv2.png/v1/fit/w_452%2Ch_259%2Cal_c/file.png",
+    link: "./quizzes/quiz03.html" },
+
+  { titulo: "Armazenamento de Dados", unidade: 4, perguntas: 10, xp: 10000,
+    imagem: "https://epraja.com.br/wp-content/uploads/2023/03/ssd-1024x576.png",
+    link: "./quizzes/quiz04.html" },
+
+  { titulo: "Processador e Desempenho", unidade: 5, perguntas: 10, xp: 10000,
+    imagem: "https://blog.oficinadosbits.com.br/wp-content/uploads/2023/08/3-1024x546.jpg",
+    link: "./quizzes/quiz05.html" },
+
+  { titulo: "Fonte de Alimentação", unidade: 6, perguntas: 10, xp: 10000,
+    imagem: "https://m.magazineluiza.com.br/a-static/420x420/fonte-alimentacao-pc-computador-atx-500w-110v-230v-50hz-5a-maaxaudio/karflix/1253/d49145890140fd71f198313e831d8232.jpeg",
+    link: "./quizzes/quiz06.html" },
+
+  { titulo: "Instalando a CPU e Dissipador", unidade: 7, perguntas: 10, xp: 10000,
+    imagem: "https://thumbs.dreamstime.com/b/instalar-um-processador-central-vazio-em-uma-motherboard-cpu-branco-est%C3%A1-instalada-no-conector-da-placa-m%C3%A3e-pc-digital-desy-227267634.jpg",
+    link: "./quizzes/quiz07.html" },
+
+  { titulo: "Instalando a Placa-Mãe", unidade: 8, perguntas: 10, xp: 10000,
+    imagem: "https://i.ytimg.com/vi/sfUZrY1G22E/maxresdefault.jpg",
+    link: "./quizzes/quiz08.html" },
+
+  { titulo: "Instalando Armazenamento e Leitores", unidade: 9, perguntas: 10, xp: 10000,
+    imagem: "https://media.kingston.com/kingston/hero/ktc-blog-pc-performance-upgrade-dell-hero-lg.jpg",
+    link: "./quizzes/quiz09.html" },
+
+  { titulo: "Conectando Energia e Dados", unidade: 10, perguntas: 10, xp: 10000,
+    imagem: "https://img.freepik.com/fotos-premium/homens-seguram-a-mao-para-conectar-o-plugue-de-energia-e-o-cabo-para-a-conexao-de-energia-no-cabo-mae-na-caixa-atx-do-computador_265993-50.jpg",
+    link: "./quizzes/quiz10.html" },
+
+  { titulo: "Fechamento e Teste Final", unidade: 11, perguntas: 10, xp: 10000,
+    imagem: "https://img.terabyteshop.com.br/produto/g/computador-t-home-crate-intel-core-i3-10100-ddr4-8gb-ssd-240gb_252936.jpg",
+    link: "./quizzes/quiz11.html" }
+];
+
+
+  
   const container = document.getElementById("quizzesGrid");
   if (!container) {
     console.error("Elemento #quizzesGrid não encontrado.");
@@ -123,10 +157,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (imgEl) imgEl.src = URL.createObjectURL(blob);
     } else {
       const imgEl = document.getElementById("userPhoto");
-      if (imgEl) imgEl.src = "./img/avatar/default.png";
+      if (imgEl) imgEl.src = "./images/user.png";
     }
   } catch {
     const imgEl = document.getElementById("userPhoto");
-    if (imgEl) imgEl.src = "./img/avatar/default.png";
+    if (imgEl) imgEl.src = "./images/user.png";
   }
 });

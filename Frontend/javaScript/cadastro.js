@@ -21,7 +21,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         });
         
         if (resposta.ok) {
-            alert("Cadastro realizado com sucesso!");
+            // alert("Cadastro realizado com sucesso!");
             
         } else {
             alert("Erro ao cadastrar o usuário. Por favor, tente novamente.");

@@ -232,7 +232,7 @@ function getNextBadgeInfo(score) {
     if (score >= 60000) return { next: "🧙‍♂️✨ Lendário", missing: 100000 - score };
     if (score >= 30000) return { next: "🦾 Especialista", missing: 60000 - score };
     if (score >= 10000) return { next: "🔥 Avançado", missing: 30000 - score };
-    return { next: "⭐ Intermediário", missing: 1000 - score };
+    return { next: "⭐ Intermediário", missing: 10000 - score };
 }
 
 function updateBadges(score) {
@@ -260,7 +260,6 @@ function updateBadges(score) {
     progressBar.style.width = progress + "%";
     progressText.textContent = `Faltam ${missing} pontos para a próxima insígnia (${next})`;
 }
-
 
 
 
