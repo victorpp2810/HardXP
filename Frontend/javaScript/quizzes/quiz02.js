@@ -214,15 +214,27 @@ function finalizarQuiz() {
     marcarConcluida(unidadeAtual - 1);
   }
 
-  // FIM DO QUIZ
-  questionText.textContent = `Você concluiu o quiz da Unidade ${unidadeAtual}!`;
-  optionsBox.innerHTML = "";
-  nextBtn.remove();
+// FIM DO QUIZ
+questionText.textContent = `Você concluiu o quiz da Unidade ${unidadeAtual}!`;
+optionsBox.innerHTML = "";
+nextBtn.remove();
 
-  // REDIRECIONAR PARA A PRÓXIMA UNIDADE
-  setTimeout(() => {
-    window.location.href = `../unidades/unidade0${proximaUnidade}.html`;
-  }, 2500);
+// --- BOTÃO PARA PRÓXIMA UNIDADE ---
+const btnNextUnit = document.createElement("button");
+btnNextUnit.textContent = "Ir para a próxima unidade";
+btnNextUnit.style.marginTop = "20px";
+btnNextUnit.style.padding = "10px 20px";
+btnNextUnit.style.background = "#3b82f6";
+btnNextUnit.style.color = "white";
+btnNextUnit.style.border = "none";
+btnNextUnit.style.borderRadius = "8px";
+btnNextUnit.style.cursor = "pointer";
+btnNextUnit.onclick = () => {
+  window.location.href = `../unidades/unidade0${proximaUnidade}.html`;
+};
+
+document.querySelector(".quiz-container").appendChild(btnNextUnit);
+
 }
 
 // -----------------------------------------

@@ -40,12 +40,12 @@ const questions = [
     correct: 2
   },
   {
-    question: "O que indica um bip curto no alto-falante do sistema (speaker)?",
+    question: "O que indica um bip curto no speaker?",
     options: [
       "Erro de memória RAM",
       "POST concluído com sucesso",
       "Placa de vídeo desconectada",
-      "Falha na fonte de alimentação"
+      "Falha na fonte"
     ],
     correct: 1
   },
@@ -64,68 +64,60 @@ const questions = [
     options: [
       "Processo de inicialização que verifica o hardware",
       "Tipo de conexão USB",
-      "Comando de desligamento do BIOS",
-      "Driver de instalação de disco"
+      "Comando de desligamento da BIOS",
+      "Driver de disco"
     ],
     correct: 0
   },
   {
-    question: "Qual a principal função do BIOS durante o primeiro boot?",
+    question: "Qual a função do BIOS durante o primeiro boot?",
     options: [
       "Gerar gráficos da GPU",
       "Verificar o hardware e iniciar o sistema",
-      "Aumentar o desempenho da RAM",
+      "Aumentar desempenho da RAM",
       "Instalar drivers automaticamente"
     ],
     correct: 1
   },
   {
-    question: "Durante o teste final, o que o técnico deve monitorar?",
+    question: "Durante o teste final, o técnico deve monitorar:",
     options: [
-      "Temperatura da CPU, ruídos e funcionamento dos LEDs",
+      "Temperatura da CPU, ruídos e LEDs",
       "Velocidade da internet",
-      "Quantidade de aplicativos abertos",
+      "Aplicativos abertos",
       "Resolução da tela"
     ],
     correct: 0
   },
   {
-    question: "Após a conclusão dos testes, o que indica que a montagem foi bem-sucedida?",
+    question: "Após os testes, o que indica montagem bem-sucedida?",
     options: [
-      "O computador inicia normalmente e todos os dispositivos são reconhecidos",
+      "O sistema inicia normalmente",
       "A ventoinha da fonte desliga",
-      "A BIOS trava após o logo",
-      "O LED do gabinete não acende"
+      "A BIOS trava",
+      "O LED frontal não acende"
     ],
     correct: 0
   }
 ];
 
-// -----------------------------------------
-// CONFIGURAÇÕES DO QUIZ (UNIDADE 11)
-// -----------------------------------------
-const unidadeAtual = 11;
-const proximaUnidade = null; // 👈 não existe unidade 12
+// --------------------------------------------------
 
-// -----------------------------------------
-// SISTEMA DE PONTUAÇÃO
-// -----------------------------------------
+const unidadeAtual = 11;
+const proximaUnidade = null;
+
 let current = 0;
 let score = 0;
 let attempt = 0;
 const pointsPerAttempt = [1000, 700, 400, 100];
 
-// -----------------------------------------
-// ELEMENTOS DA TELA
-// -----------------------------------------
 const questionText = document.getElementById("questionText");
 const optionsBox = document.getElementById("optionsBox");
 const nextBtn = document.getElementById("nextBtn");
 const scoreBoard = document.getElementById("scoreBoard");
 
-// -----------------------------------------
-// CARREGAR PERGUNTA
-// -----------------------------------------
+// --------------------------------------------------
+
 function loadQuestion() {
   const q = questions[current];
   attempt = 0;
@@ -143,14 +135,11 @@ function loadQuestion() {
   });
 }
 
-// -----------------------------------------
-// VERIFICAR RESPOSTA
-// -----------------------------------------
 function checkAnswer(index, div) {
   const q = questions[current];
-  const options = optionsBox.querySelectorAll(".option");
-
+  const options = document.querySelectorAll(".option");
   options.forEach(o => o.style.pointerEvents = "none");
+
   attempt++;
 
   if (index === q.correct) {
@@ -163,7 +152,6 @@ function checkAnswer(index, div) {
     nextBtn.disabled = false;
   } else {
     div.classList.add("wrong");
-
     if (attempt < pointsPerAttempt.length) {
       options.forEach(o => o.style.pointerEvents = "auto");
       div.style.pointerEvents = "none";
@@ -171,12 +159,8 @@ function checkAnswer(index, div) {
   }
 }
 
-// -----------------------------------------
-// BOTÃO PRÓXIMA
-// -----------------------------------------
 nextBtn.onclick = () => {
   current++;
-
   if (current < questions.length) {
     loadQuestion();
   } else {
@@ -184,52 +168,39 @@ nextBtn.onclick = () => {
   }
 };
 
-// -----------------------------------------
-// FINALIZAR QUIZ DA UNIDADE 11
-// -----------------------------------------
+// --------------------------------------------------
+
 function finalizarQuiz() {
   const usuarioId = localStorage.getItem("id");
 
-  // SALVAR XP
   fetch(`http://localhost:2000/usuario/${usuarioId}/adicionarXP`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ xp: score })
   });
 
-  // SALVAR PROGRESSO FINAL
   fetch("http://localhost:2000/progresso", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      usuarioId,
-      unidade: unidadeAtual
-    })
+    body: JSON.stringify({ usuarioId, unidade: unidadeAtual })
   });
 
-  // MARCAR VISUALMENTE COMO CONCLUÍDA (curso.js)
   if (typeof marcarConcluida === "function") {
     marcarConcluida(unidadeAtual - 1);
   }
 
-  // TELA FINAL
-  questionText.textContent = `🎉 Parabéns! Você concluiu **todo o curso**!`;
+  questionText.textContent = "🎉 Parabéns! Você concluiu todo o curso!";
   optionsBox.innerHTML = "";
   nextBtn.remove();
 
-  // --------------------------------------
-  // AQUI VOCÊ ESCOLHE O QUE QUER FAZER:
-  // --------------------------------------
+  const btn = document.createElement("button");
+  btn.textContent = "Voltar ao curso";
+  btn.style.marginTop = "20px";
+  btn.onclick = () => window.location.href = "../curso.html";
 
-  // OPÇÃO 1 → voltar para a página do curso
-  setTimeout(() => {
-    window.location.href = "../curso.html";
-  }, 3000);
-
-  // ➤ Se quiser liberar certificado, é só pedir que eu adiciono.
+  document.querySelector(".quiz-container").appendChild(btn);
 }
 
-// -----------------------------------------
-// INICIAR QUIZ
-// -----------------------------------------
+// --------------------------------------------------
+
 loadQuestion();

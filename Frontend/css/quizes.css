@@ -30,6 +30,43 @@
     width: 100%;
     max-width: 1000px;
 }
+.quiz-goals {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.goal-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(222, 222, 222, 0.267);
+    transition: 0.3s;
+}
+
+.goal-card:hover {
+    transform: translateY(-4px);
+}
+
+.goal-icon {
+    font-size: 32px;
+}
+
+.goal-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.goal-text {
+    margin-top: 5px;
+    opacity: .7;
+    font-size: 14px;
+}
 
 .quiz-stat-card {
     background: white;

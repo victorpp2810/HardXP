@@ -80,7 +80,7 @@ rotas.put("/:id/senha", function(req, res) {
 
 });
 
-rotas.delete("/:id/delete", function(req, res) {
+rotas.delete("/delete/:id", function(req, res) {
     const id = Number(req.params.id);
     db.run(`DELETE FROM Usuario WHERE idUsuario = ?`, [id],
         function(err) {

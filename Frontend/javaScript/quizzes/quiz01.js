@@ -1,5 +1,3 @@
-// quiz01.js — versão defensiva + debug logs
-(() => {
   // ---------- CONFIG ----------
   const questions = [
     { question: "O que é considerado hardware em um computador?", options: ["Os programas e aplicativos instalados","A parte física e tangível do sistema","Os dados armazenados no disco rígido","Os comandos executados pelo processador"], correct: 1 },
@@ -13,219 +11,145 @@
     { question: "O que diferencia o SSD do HD tradicional?", options: ["O SSD é mais rápido e não tem partes mecânicas","O SSD é mais pesado e consome mais energia","O HD é feito para armazenar temporariamente dados","Não há diferença entre eles"], correct: 0 },
     { question: "Por que o gabinete é importante na montagem do computador?", options: ["Serve apenas como decoração estética","Protege e organiza os componentes internos","Aumenta o desempenho do processador","Amplifica o sinal da fonte de energia"], correct: 1 }
   ];
-  const unidadeAtual = 1;
-  const proximaUnidade = 2;
-  const pointsPerAttempt = [1000, 700, 400, 100];
+// -----------------------------------------
 
-  // ---------- ESTADO ----------
-  let current = 0;
-  let score = 0;
-  let attempt = 0;
+const unidadeAtual = 1;      // 👈 Mude aqui para a unidade atual
+const proximaUnidade = 2;    // 👈 Mude aqui para a próxima unidade
 
-  // ---------- DOM ----------
-  const questionText = document.getElementById("questionText");
-  const optionsBox = document.getElementById("optionsBox");
-  const scoreBoard = document.getElementById("scoreBoard");
-  // nextBtn pode ser recriado, então buscamos sempre por id
+// -----------------------------------------
+// SISTEMA DE PONTUAÇÃO
+// -----------------------------------------
+let current = 0;
+let score = 0;
+let attempt = 0;
+const pointsPerAttempt = [1000, 700, 400, 100];
 
-  // ---------- DEFENSIVAS GLOBAIS ----------
-  // evita qualquer submit de forms
-  document.querySelectorAll("form").forEach(f => {
-    f.addEventListener("submit", e => {
-      console.warn("[quiz01] prevented form submit");
-      e.preventDefault();
-      return false;
-    });
+// -----------------------------------------
+// ELEMENTOS DA TELA
+// -----------------------------------------
+const questionText = document.getElementById("questionText");
+const optionsBox = document.getElementById("optionsBox");
+const nextBtn = document.getElementById("nextBtn");
+const scoreBoard = document.getElementById("scoreBoard");
+
+// -----------------------------------------
+// CARREGAR PERGUNTA
+// -----------------------------------------
+function loadQuestion() {
+  const q = questions[current];
+  attempt = 0;
+  nextBtn.disabled = true;
+
+  questionText.textContent = `${current + 1}. ${q.question}`;
+  optionsBox.innerHTML = "";
+
+  q.options.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.textContent = opt;
+    div.onclick = () => checkAnswer(i, div);
+    optionsBox.appendChild(div);
   });
-  // força todos botões a não serem submit se não tiverem type
-  document.querySelectorAll("button").forEach(b => {
-    if (!b.hasAttribute("type")) b.setAttribute("type", "button");
-  });
+}
 
-  // logs para debug
-  const L = (...a) => console.log("[quiz01]", ...a);
-  const E = (...a) => console.error("[quiz01]", ...a);
+// -----------------------------------------
+// VERIFICAR RESPOSTA
+// -----------------------------------------
+function checkAnswer(index, div) {
+  const q = questions[current];
+  const options = optionsBox.querySelectorAll(".option");
 
-  // registra antes do unload (se houver reload, aparece no console)
-  window.addEventListener("beforeunload", (e) => {
-    L("beforeunload fired — probably navigation / reload.");
-  });
-  window.addEventListener("unload", () => {
-    L("unload fired.");
-  });
+  options.forEach(o => o.style.pointerEvents = "none");
+  attempt++;
 
-  // ---------- FUNÇÕES PRINCIPAIS ----------
-  function ensureNextButton() {
-    let b = document.getElementById("nextBtn");
-    if (!b) {
-      const container = document.querySelector(".quiz-container") || document.body;
-      b = document.createElement("button");
-      b.id = "nextBtn";
-      b.type = "button";
-      b.textContent = "Próxima";
-      b.disabled = true;
-      container.appendChild(b);
-      L("nextBtn criado dinamicamente");
-    } else {
-      // garante type
-      if (!b.getAttribute("type")) b.setAttribute("type", "button");
-    }
-    return b;
-  }
+  if (index === q.correct) {
+    div.classList.add("correct");
 
-  function renderQuestion() {
-    const q = questions[current];
-    attempt = 0;
-    if (!questionText || !optionsBox) {
-      E("Elementos essenciais não encontrados (#questionText ou #optionsBox).");
-      return;
-    }
-    questionText.textContent = `${current + 1}. ${q.question}`;
-    optionsBox.innerHTML = "";
-    // garante botão
-    const nextBtn = ensureNextButton();
-    nextBtn.disabled = true;
+    const earned = pointsPerAttempt[Math.min(attempt - 1, 3)];
+    score += earned;
+    scoreBoard.textContent = `Pontuação: ${score}`;
 
-    q.options.forEach((opt, i) => {
-      const div = document.createElement("div");
-      div.className = "option";
-      div.textContent = opt;
-      div.tabIndex = 0;
-      // evento: handler único por elemento
-      div.addEventListener("click", () => handleAnswer(i, div));
-      div.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleAnswer(i, div); }});
-      optionsBox.appendChild(div);
-    });
+    nextBtn.disabled = false;
+  } else {
+    div.classList.add("wrong");
 
-    // atualiza placar visual
-    if (scoreBoard) scoreBoard.textContent = `Pontuação: ${score}`;
-    L(`Rendered question ${current+1}`);
-  }
-
-  function handleAnswer(index, div) {
-    const q = questions[current];
-    const optEls = Array.from(optionsBox.querySelectorAll(".option"));
-    attempt = Math.max(1, attempt + 1);
-
-    if (index === q.correct) {
-      // correto
-      div.classList.add("correct");
-      const earned = pointsPerAttempt[Math.min(attempt - 1, pointsPerAttempt.length - 1)];
-      score += earned;
-      if (scoreBoard) scoreBoard.textContent = `Pontuação: ${score}`;
-      // trava tudo
-      optEls.forEach(o => o.style.pointerEvents = "none");
-      // habilita botão
-      const nextBtn = ensureNextButton();
-      nextBtn.disabled = false;
-      L(`Acertou Q${current+1} — ganhou ${earned} — score=${score}`);
-    } else {
-      // errado — trava apenas essa opção
-      div.classList.add("wrong");
+    if (attempt < pointsPerAttempt.length) {
+      options.forEach(o => o.style.pointerEvents = "auto");
       div.style.pointerEvents = "none";
-      // mantém demais ativas
-      optEls.forEach(o => {
-        if (!o.classList.contains("wrong") && !o.classList.contains("correct")) {
-          o.style.pointerEvents = "auto";
-        } else {
-          o.style.pointerEvents = "none";
-        }
-      });
-      L(`Errou Q${current+1} — tentativa ${attempt}`);
     }
   }
+}
 
-  // Delegação para o botão NEXT — robusto contra recriações
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest && e.target.closest("#nextBtn");
-    if (!btn) return;
-    e.preventDefault();
-    e.stopPropagation();
-    if (btn.disabled) {
-      L("nextBtn clique ignorado (disabled)");
-      return;
-    }
+// -----------------------------------------
+// BOTÃO PRÓXIMA PERGUNTA
+// -----------------------------------------
+nextBtn.onclick = () => {
+  current++;
 
-    // avança
-    current++;
-    if (current < questions.length) {
-      renderQuestion();
-    } else {
-      finalizarQuizFlow();
-    }
-  });
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    finalizarQuiz();
+  }
+};
 
-  // ---------- FINALIZAÇÃO (await, logs) ----------
-  async function finalizarQuizFlow() {
-    L("finalizarQuizFlow iniciado — enviando dados...");
-    const usuarioId = localStorage.getItem("id");
-    if (!usuarioId) {
-      E("Usuário não identificado (localStorage id). Não envio dados.");
-      alert("Erro: faça login novamente.");
-      return;
-    }
+// -----------------------------------------
+// FINALIZAR QUIZ
+// -----------------------------------------
+function finalizarQuiz() {
+  const usuarioId = localStorage.getItem("id");
 
-    try {
-      // enviar XP (score)
-      const xpResp = await fetch(`http://localhost:2000/usuario/${usuarioId}/adicionarXP`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ xp: score })
-      });
-      L("/usuario/:id/adicionarXP status:", xpResp.status);
-      try { L("XP response body:", await xpResp.clone().json().catch(()=>null)); } catch(e){}
+  // SALVAR XP DO QUIZ
+  fetch(`http://localhost:2000/usuario/${usuarioId}/adicionarXP`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ xp: score })
+  })
+    .then(r => r.json())
+    .then(d => console.log("XP atualizado:", d))
+    .catch(err => console.error("Erro ao enviar XP:", err));
 
-    } catch (err) {
-      E("Erro fetch adicionarXP:", err);
-    }
+  // SALVAR PROGRESSO DA UNIDADE
+  fetch("http://localhost:2000/progresso", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      usuarioId,
+      unidade: unidadeAtual
+    })
+  })
+    .then(() => console.log(`Progresso da unidade ${unidadeAtual} salvo`))
+    .catch(err => console.error("Erro ao salvar progresso:", err));
 
-    try {
-      const progResp = await fetch("http://localhost:2000/progresso", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usuarioId, unidade: unidadeAtual })
-      });
-      L("/progresso status:", progResp.status);
-      try { L("Progresso response body:", await progResp.clone().json().catch(()=>null)); } catch(e){}
-    } catch (err) {
-      E("Erro fetch progresso:", err);
-    }
-
-    // atualiza local
-    try {
-      const pl = JSON.parse(localStorage.getItem("progressoHardware")) || { concluido: [] };
-      if (!pl.concluido.includes(unidadeAtual - 1)) {
-        pl.concluido.push(unidadeAtual - 1);
-        localStorage.setItem("progressoHardware", JSON.stringify(pl));
-        L("Progresso local atualizado.");
-      }
-    } catch (err) { E("Erro atualizar progresso local:", err); }
-
-    // UI final
-    if (questionText) questionText.textContent = `Você concluiu o quiz da Unidade ${unidadeAtual}!`;
-    if (optionsBox) optionsBox.innerHTML = "";
-    document.getElementById("nextBtn")?.remove();
-
-    // redirect seguro
-    setTimeout(() => {
-      L("Redirecionando para próxima unidade...");
-      window.location.replace(`../unidades/unidade0${proximaUnidade}.html`);
-    }, 900);
+  // MARCAR COMO CONCLUÍDA VISUALMENTE (curso.js)
+  if (typeof marcarConcluida === "function") {
+    marcarConcluida(unidadeAtual - 1);
   }
 
-  // ---------- START ----------
-  try {
-    renderQuestion();
-    L("Quiz iniciado");
-  } catch (e) {
-    E("Erro ao iniciar quiz:", e);
-  }
+  // FIM DO QUIZ
+questionText.textContent = `Você concluiu o quiz da Unidade ${unidadeAtual}!`;
+optionsBox.innerHTML = "";
+nextBtn.remove();
 
-  // export debug
-  window.__quiz01_debug = {
-    renderQuestion,
-    handleAnswer,
-    finalizarQuizFlow,
-    getState: () => ({ current, score, attempt })
-  };
-})();
+// --- BOTÃO PARA PRÓXIMA UNIDADE ---
+const btnNextUnit = document.createElement("button");
+btnNextUnit.textContent = "Ir para a próxima unidade";
+btnNextUnit.style.marginTop = "20px";
+btnNextUnit.style.padding = "10px 20px";
+btnNextUnit.style.background = "#3b82f6";
+btnNextUnit.style.color = "white";
+btnNextUnit.style.border = "none";
+btnNextUnit.style.borderRadius = "8px";
+btnNextUnit.style.cursor = "pointer";
+btnNextUnit.onclick = () => {
+  window.location.href = `../unidades/unidade0${proximaUnidade}.html`;
+};
+
+document.querySelector(".quiz-container").appendChild(btnNextUnit);
+
+}
+
+// -----------------------------------------
+// INICIAR QUIZ
+// -----------------------------------------
+loadQuestion();

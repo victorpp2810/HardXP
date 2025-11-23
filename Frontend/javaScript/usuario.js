@@ -314,7 +314,7 @@ function updateBadges(score) {
   if (!confirmDelete) return;
 
   try {
-    const res = await fetch(`http://localhost:2000/${userId}/delete`, {
+    const res = await fetch(`http://localhost:2000/delete/${userId}`, {
       method: "DELETE",
       credentials: "include", // se você estiver usando sessão/cookies
     });

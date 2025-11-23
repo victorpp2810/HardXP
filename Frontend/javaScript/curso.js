@@ -21,13 +21,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   const IMAGEM_PADRAO = "./img/cursos/placeholder.png";
 
   // progresso salvo
-  let progressoSalvo = JSON.parse(localStorage.getItem("progressoHardware")) || { concluido: [] };
+
+  let progressoSalvo = JSON.parse(localStorage.getItem(`progressoHardware_${localStorage.getItem("id")}`)) || { concluido: [] };
 
   function atualizarProgresso() {
     const total = curso.unidades.length;
     const concluidas = progressoSalvo.concluido.length;
     const porcentagem = Math.round((concluidas / total) * 100);
-    localStorage.setItem("progressoHardware", JSON.stringify(progressoSalvo));
+    // pega usuario id
+    const usuarioId = localStorage.getItem("id");
+
+    localStorage.setItem(`progressoHardware_${usuarioId}`, JSON.stringify(progressoSalvo));
     return porcentagem;
   }
 
@@ -185,10 +189,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // função global para marcar concluída (mantive sua API)
 window.marcarConcluida = function(indice) {
-  let progressoSalvo = JSON.parse(localStorage.getItem("progressoHardware")) || { concluido: [] };
+  const usuarioId = localStorage.getItem("id");
+  let progressoSalvo = JSON.parse(localStorage.getItem(`progressoHardware_${usuarioId}`)) || { concluido: [] };
   if (!progressoSalvo.concluido.includes(indice)) {
     progressoSalvo.concluido.push(indice);
-    localStorage.setItem("progressoHardware", JSON.stringify(progressoSalvo));
+    localStorage.setItem(`progressoHardware_${usuarioId}`, JSON.stringify(progressoSalvo));
     console.log(`✅ Unidade ${indice + 1} concluída e salva!`);
     // Atualiza barra de progresso na UI (se quiser forçar recálculo)
     const perc = Math.round((progressoSalvo.concluido.length / document.querySelectorAll(".course-card").length) * 100);
