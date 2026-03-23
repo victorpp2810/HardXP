@@ -1,32 +1,50 @@
+# HardXP
 
-# HardXP - Projeto Final Interdisciplinar (PFI)
+HardXP is an interactive platform focused on teaching computer hardware through a gamified and practical approach.
 
-Este repositório contém o projeto **HardXP**, incluindo o backend e o frontend do sistema. O projeto foi desenvolvido como parte do Trabalho Final Interdisciplinar (PFI) e tem como objetivo apresentar uma aplicação interativa relacionada ao aprendizado sobre hardware.
+The project aims to make learning more engaging by replacing passive content with interactive challenges and progression-based learning.
 
----
+## About
 
-## Estrutura do repositório
-Falta colocar
+HardXP was developed in an academic context with the goal of improving how hardware concepts are introduced to students.
 
-## Pré-requisitos
+Instead of relying only on theoretical explanations, the platform encourages active learning through quizzes, challenges and user interaction.
 
-Antes de rodar o projeto, certifique-se de ter instalado:
+The project has been presented in scientific events, reinforcing its relevance as both an educational and technological initiative.
 
-- [Node.js](https://nodejs.org/) (para rodar o backend)  
-- [Visual Studio Code](https://code.visualstudio.com/)  
+## Features
 
-## Passo a passo para acessar o site
+- Gamified learning system  
+- Interactive quizzes and challenges  
+- Ranking and progression mechanics  
+- Focus on practical understanding of hardware concepts  
 
-1. Clique em **Code** no GitHub.  
-2. Baixe o repositório clicando em **Download ZIP**.  
-3. Descompacte/extrair a pasta em seu computador.  
-4. Abra o Visual Studio Code e **abra a pasta do projeto**.  
-5. Navegue até a pasta **backend** no VS Code.  
-6. Clique com o botão direito na pasta **backend** → **Abrir Terminal Integrado**.  
-7. No terminal, execute:  
-```powershell
-npm start
-```
-e pressione Enter.  
-8. Navegue até a pasta frontend no VS Code.  
-9. Clique com o botão direito no arquivo paginaInicial.html → Abrir com o navegador (ou via Live Server, se preferir).
+## Technologies
+
+- HTML  
+- CSS  
+- JavaScript  
+- Node.js
+
+## Motivation
+
+Traditional hardware learning can be repetitive and difficult for beginners.
+
+HardXP proposes a different approach by making the learning process more interactive, intuitive and engaging.
+
+## Future Improvements
+
+- User authentication system  
+- Adaptive learning based on user performance  
+- Expanded content and modules  
+- Data analytics and performance tracking  
+
+## Author
+
+Victor Gabriel de Almeida Fongaro  
+Computer Science student at UTFPR  
+CNPq research in statistical modeling  
+
+## Status
+
+Paused
