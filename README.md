@@ -42,8 +42,7 @@ HardXP proposes a different approach by making the learning process more interac
 ## Author
 
 Victor Gabriel de Almeida Fongaro  
-Computer Science student at UTFPR  
-CNPq research in statistical modeling  
+Computer Science student at UTFPR    
 
 ## Status
 
